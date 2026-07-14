@@ -1,7 +1,7 @@
 <picture>
   <source media="(prefers-color-scheme: dark)" srcset="docs/hero-dark.svg">
   <source media="(prefers-color-scheme: light)" srcset="docs/hero-light.svg">
-  <img alt="Research Project Importer——证据优先，人工批准" src="docs/hero-light.svg">
+  <img alt="Loop Importer——证据优先，人工批准" src="docs/hero-light.svg">
 </picture>
 
 [English](README.md)
@@ -51,15 +51,15 @@
 ## 快速开始
 
 ```bash
-git clone https://github.com/emanuelmerino481/research-project-importer.git
-cd research-project-importer
+git clone https://github.com/emanuelmerino481/loop-importer.git
+cd loop-importer
 python -m pip install -e .
 
-research-project-import /path/to/existing-project \
+loop-import /path/to/existing-project \
   --project-id MY-PROJECT \
   --output /path/to/imports/MY-PROJECT
 
-python skills/research-project-importer/scripts/validate_import.py \
+python skills/loop-importer/scripts/validate_import.py \
   /path/to/imports/MY-PROJECT
 ```
 

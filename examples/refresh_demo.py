@@ -9,7 +9,7 @@ from pathlib import Path
 
 import yaml
 
-from research_project_importer import ImportOptions, import_project
+from loop_importer import ImportOptions, import_project
 
 
 ROOT = Path(__file__).resolve().parents[1]

@@ -22,7 +22,7 @@ From the repository root:
 ```bash
 python -m pip install -e .
 python examples/refresh_demo.py
-python skills/research-project-importer/scripts/validate_import.py \
+python skills/loop-importer/scripts/validate_import.py \
   examples/generated-import-packet
 ```
 

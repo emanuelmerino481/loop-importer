@@ -8,7 +8,7 @@ from unittest.mock import patch
 
 import yaml
 
-from research_project_importer import ImportOptions, ImportProjectError, import_project
+from loop_importer import ImportOptions, ImportProjectError, import_project
 
 
 class ImporterTests(unittest.TestCase):
@@ -77,7 +77,7 @@ class ImporterTests(unittest.TestCase):
             stdout="https://alice:token@example.com/org/repo.git?secret=yes\n", stderr="",
         )
         with tempfile.TemporaryDirectory() as temp, patch(
-            "research_project_importer.core.subprocess.run", return_value=completed
+            "loop_importer.core.subprocess.run", return_value=completed
         ):
             source = Path(temp) / "source"
             source.mkdir()

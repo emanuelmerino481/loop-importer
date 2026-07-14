@@ -17,7 +17,7 @@ python -m venv .venv
 python -m pip install -e .
 python -m unittest discover -s tests -v
 python examples/refresh_demo.py
-python skills/research-project-importer/scripts/validate_import.py examples/generated-import-packet
+python skills/loop-importer/scripts/validate_import.py examples/generated-import-packet
 git diff --exit-code examples/generated-import-packet
 ```
 

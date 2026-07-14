@@ -1,0 +1,4 @@
+interface:
+  display_name: "Loop Importer"
+  short_description: "Import existing research projects safely"
+  default_prompt: "Use $loop-importer to scan an existing research project and prepare a reviewable Loop/Harness import draft."

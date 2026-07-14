@@ -1,5 +1,5 @@
 <svg xmlns="http://www.w3.org/2000/svg" width="1280" height="640" viewBox="0 0 1280 640" role="img" aria-labelledby="title desc">
-  <title id="title">Research Project Importer</title>
+  <title id="title">Loop Importer</title>
   <desc id="desc">Turn a messy scientific project into an evidence-linked, human-reviewed Agent Harness draft.</desc>
   <defs>
     <linearGradient id="background" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#07132e"/><stop offset=".55" stop-color="#172554"/><stop offset="1" stop-color="#312e81"/></linearGradient>
@@ -9,7 +9,7 @@
   <rect width="1280" height="640" fill="url(#background)"/>
   <circle cx="1110" cy="80" r="190" fill="#3b82f6" opacity=".12"/>
   <circle cx="120" cy="610" r="240" fill="#8b5cf6" opacity=".12"/>
-  <text x="72" y="100" fill="#fff" font-family="system-ui,sans-serif" font-size="54" font-weight="750">Research Project Importer</text>
+  <text x="72" y="100" fill="#fff" font-family="system-ui,sans-serif" font-size="62" font-weight="750">Loop Importer</text>
   <text x="75" y="148" fill="#bfdbfe" font-family="system-ui,sans-serif" font-size="24">Messy research folder → evidence-linked Harness draft → human approval</text>
   <g filter="url(#shadow)" font-family="system-ui,sans-serif">
     <rect x="72" y="218" width="310" height="260" rx="24" fill="#fff"/>

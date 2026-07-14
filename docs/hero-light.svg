@@ -1,5 +1,5 @@
 <svg xmlns="http://www.w3.org/2000/svg" width="1200" height="300" viewBox="0 0 1200 300" role="img" aria-labelledby="title desc" shape-rendering="crispEdges">
-  <title id="title">Research Project Importer</title>
+  <title id="title">Loop Importer</title>
   <desc id="desc">Pixel-art research folder moving through an evidence scan toward human approval.</desc>
   <g transform="translate(44 38)">
     <rect x="0" y="48" width="32" height="128" fill="#d97706"/>
@@ -25,7 +25,7 @@
     <rect x="408" y="112" width="32" height="48" fill="#059669"/>
   </g>
   <g font-family="ui-monospace,SFMono-Regular,Consolas,Liberation Mono,monospace">
-    <text x="500" y="112" fill="#0f766e" font-size="42" font-weight="700">research-project-importer</text>
+    <text x="500" y="112" fill="#0f766e" font-size="58" font-weight="700">loop-importer</text>
     <text x="504" y="158" fill="#475569" font-size="24" font-style="italic">evidence first. human approved.</text>
     <text x="504" y="210" fill="#64748b" font-size="19">READ-ONLY  ·  REVIEWABLE DAG  ·  AGENT HARNESS</text>
   </g>

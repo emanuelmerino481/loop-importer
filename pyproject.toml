@@ -3,13 +3,13 @@ requires = ["setuptools>=69"]
 build-backend = "setuptools.build_meta"
 
 [project]
-name = "research-project-importer"
+name = "loop-importer"
 version = "0.1.0"
-description = "Import an existing scientific project into a review-first agent harness draft"
+description = "Import an existing scientific project into a review-first Loop/Harness draft"
 readme = "README.md"
 requires-python = ">=3.11"
 license = {text = "Apache-2.0"}
-authors = [{name = "emanuelmerino481"}]
+authors = [{name = "Joy"}]
 dependencies = ["PyYAML>=6.0"]
 classifiers = [
   "Development Status :: 3 - Alpha",
@@ -18,11 +18,11 @@ classifiers = [
 ]
 
 [project.scripts]
-research-project-import = "research_project_importer.cli:main"
+loop-import = "loop_importer.cli:main"
 
 [project.urls]
-Homepage = "https://github.com/emanuelmerino481/research-project-importer"
-Issues = "https://github.com/emanuelmerino481/research-project-importer/issues"
+Homepage = "https://github.com/emanuelmerino481/loop-importer"
+Issues = "https://github.com/emanuelmerino481/loop-importer/issues"
 
 [tool.setuptools.packages.find]
 where = ["src"]

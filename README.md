@@ -1,10 +1,10 @@
 <picture>
   <source media="(prefers-color-scheme: dark)" srcset="docs/hero-dark.svg">
   <source media="(prefers-color-scheme: light)" srcset="docs/hero-light.svg">
-  <img alt="Research Project Importer — evidence first, human approved" src="docs/hero-light.svg">
+  <img alt="Loop Importer — evidence first, human approved" src="docs/hero-light.svg">
 </picture>
 
-[![tests](https://github.com/emanuelmerino481/research-project-importer/actions/workflows/tests.yml/badge.svg)](https://github.com/emanuelmerino481/research-project-importer/actions/workflows/tests.yml)
+[![tests](https://github.com/emanuelmerino481/loop-importer/actions/workflows/tests.yml/badge.svg)](https://github.com/emanuelmerino481/loop-importer/actions/workflows/tests.yml)
 [![Python 3.11+](https://img.shields.io/badge/python-3.11%2B-3776ab)](https://www.python.org/)
 [![Apache-2.0](https://img.shields.io/badge/license-Apache--2.0-green)](LICENSE)
 
@@ -16,7 +16,7 @@
 
 ![Read-only project import followed by human review](docs/demo-flow.svg)
 
-Long-running research projects accumulate scripts, configs, checkpoints, old metrics, GPU logs, and undocumented decisions. An Agent can inventory these files, but it must not silently convert guesses into scientific facts. Research Project Importer creates an evidence-linked draft and makes every unresolved scientific decision explicit.
+Long-running research projects accumulate scripts, configs, checkpoints, old metrics, GPU logs, and undocumented decisions. An Agent can inventory these files, but it must not silently convert guesses into scientific facts. Loop Importer creates an evidence-linked draft and makes every unresolved scientific decision explicit.
 
 ## 💌 A note from the builder
 
@@ -53,15 +53,15 @@ The generated DAG remains `LOW` confidence. The review session asks one question
 ## Quick start
 
 ```bash
-git clone https://github.com/emanuelmerino481/research-project-importer.git
-cd research-project-importer
+git clone https://github.com/emanuelmerino481/loop-importer.git
+cd loop-importer
 python -m pip install -e .
 
-research-project-import /path/to/existing-project \
+loop-import /path/to/existing-project \
   --project-id MY-PROJECT \
   --output /path/to/imports/MY-PROJECT
 
-python skills/research-project-importer/scripts/validate_import.py \
+python skills/loop-importer/scripts/validate_import.py \
   /path/to/imports/MY-PROJECT
 ```
 
@@ -89,7 +89,7 @@ This is reconnaissance software, not a sandbox and not scientific verification. 
 
 ## Codex Skill
 
-`skills/research-project-importer/` is an installable Codex Skill. It requires evidence-first, one-question-at-a-time review and prevents an Agent from activating tasks before explicit human approval.
+`skills/loop-importer/` is an installable Codex Skill. It requires evidence-first, one-question-at-a-time review and prevents an Agent from activating tasks before explicit human approval.
 
 ## Why the demo is synthetic
 
