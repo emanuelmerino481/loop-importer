@@ -1,0 +1,6 @@
+{
+  "accuracy": 0.82,
+  "loss": 0.47,
+  "split": "validation_candidate",
+  "checkpoint": "checkpoints/model_seed42.ckpt"
+}

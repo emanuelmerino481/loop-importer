@@ -1,4 +1,0 @@
-interface:
-  display_name: "Research Project Importer"
-  short_description: "Import existing research projects safely"
-  default_prompt: "Use $research-project-importer to scan an existing research project and prepare a reviewable Harness import draft."

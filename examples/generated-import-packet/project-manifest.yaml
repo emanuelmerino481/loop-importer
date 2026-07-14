@@ -1,0 +1,37 @@
+schema_version: '1.0'
+import_status: DRAFT_HUMAN_REVIEW
+project_id: SYNTHETIC-RESPONSE-DEMO
+generated_at: '2026-07-14T00:00:00+00:00'
+source_root: examples/incomplete-research-project
+source_mutated: false
+scanner_limits:
+  project_id: SYNTHETIC-RESPONSE-DEMO
+  max_files: 50000
+  max_text_bytes: 262144
+  hash_max_bytes: 1048576
+git:
+  is_repository: false
+  root: null
+  commit: null
+  dirty: null
+  changed_path_count: 0
+  origin: null
+summary:
+  file_count: 14
+  total_bytes: 2947
+  categories:
+    secret_redacted: 1
+    documentation: 1
+    other: 2
+    checkpoint: 1
+    config: 3
+    data: 1
+    result_or_log: 1
+    script: 4
+  languages:
+    Python: 4
+  text_signals:
+    seed: 5
+    metric: 4
+    checkpoint: 3
+    cuda: 1

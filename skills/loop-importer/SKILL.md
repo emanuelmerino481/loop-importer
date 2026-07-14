@@ -1,17 +1,17 @@
 ---
-name: research-project-importer
+name: loop-importer
 description: Import a long-running, manually operated scientific project into an agent Harness as a reviewable draft. Use when Codex needs to onboard an existing research repository, migrate IDE-driven experiments, inventory code/data/configs/checkpoints/results/logs, infer candidate task dependencies, or prepare task inputs without modifying or running the source project.
 ---
 
-# Research Project Importer
+# Loop Importer
 
 Convert an existing research directory into a bounded, evidence-linked Harness import packet. Treat the scan as reconnaissance, never as scientific verification.
 
 ## Workflow
 
 1. Confirm the source project root and output root. Keep output outside the source project.
-2. Run `research-project-import SOURCE --project-id ID --output OUTPUT`.
-3. Run `python skills/research-project-importer/scripts/validate_import.py OUTPUT`.
+2. Run `loop-import SOURCE --project-id ID --output OUTPUT`.
+3. Run `python skills/loop-importer/scripts/validate_import.py OUTPUT`.
 4. Read `references/output-contract.md`, then inspect the generated manifest, registry, DAG candidates and Chinese HTML report.
 5. Read `references/review-gates.md` before proposing promotion.
 6. Open `review-session.yaml`. For each unresolved item, inspect its evidence candidates first. Ask exactly one question, include the Agent's recommended answer, wait for the human response, then record the answer, verdict, correction/notes and resolution status.

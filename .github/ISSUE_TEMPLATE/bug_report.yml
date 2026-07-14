@@ -1,0 +1,32 @@
+name: Bug report
+description: Report incorrect scanning, redaction, validation, or generated output
+title: "[Bug]: "
+labels: [bug]
+body:
+  - type: markdown
+    attributes:
+      value: Do not include credentials, private paths, datasets, or unpublished results.
+  - type: textarea
+    id: problem
+    attributes:
+      label: What happened?
+      description: Describe the smallest safe reproduction.
+    validations:
+      required: true
+  - type: textarea
+    id: expected
+    attributes:
+      label: Expected behavior
+    validations:
+      required: true
+  - type: input
+    id: version
+    attributes:
+      label: Commit or release
+    validations:
+      required: true
+  - type: textarea
+    id: checks
+    attributes:
+      label: Sanitized diagnostics
+      description: Remove secrets and private paths before pasting output.

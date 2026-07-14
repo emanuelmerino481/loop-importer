@@ -1,0 +1,11 @@
+cff-version: 1.2.0
+message: If this software supports your research workflow, please cite the repository and release used.
+title: Loop Importer
+type: software
+authors:
+  - name: Joy
+repository-code: https://github.com/emanuelmerino481/loop-importer
+url: https://github.com/emanuelmerino481/loop-importer
+license: Apache-2.0
+version: 0.1.0
+date-released: 2026-07-14
