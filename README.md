@@ -30,6 +30,8 @@ That frustration is why I built this small tool. It is for the slightly awkward 
 
 This is my first public attempt, so it will not be perfect. If it helps, please try it and tell me what breaks. If I misunderstood something, open an issue and correct me. A Star is lovely ⭐, but a real project that this tool can help is even better. ❤️
 
+I am also grateful to my undergraduate mentor, who welcomes students interested in the intersection of **biology + AI** to get in touch and exchange ideas. 🧬🤖 Students who are genuinely curious about this direction can reach him at [dacheng2023@126.com](mailto:dacheng2023@126.com). 📮
+
 — [@emanuelmerino481](https://github.com/emanuelmerino481)
 
 ## See the complete demo
