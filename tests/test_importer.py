@@ -63,6 +63,9 @@ class ImporterTests(unittest.TestCase):
                 (source / name).write_text("# documentary candidate\n", encoding="utf-8")
             import_project(source, output, ImportOptions(project_id="DAG"))
             dag = yaml.safe_load((output / "task-dag.yaml").read_text(encoding="utf-8"))
+            registry = yaml.safe_load((output / "artifact-registry.yaml").read_text(encoding="utf-8"))
+            paths = [item["path"] for item in registry["artifacts"]]
+            self.assertEqual(sorted(paths), paths)
             tasks = {item["kind"]: item for item in dag["tasks"]}
             self.assertEqual([tasks["prepare"]["task_id"]], tasks["train"]["depends_on_candidates"])
             self.assertEqual([tasks["train"]["task_id"]], tasks["evaluate"]["depends_on_candidates"])

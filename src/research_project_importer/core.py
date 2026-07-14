@@ -154,12 +154,12 @@ def _iter_files(source: Path, output: Path, max_files: int) -> Iterable[Path]:
     output_resolved = output.resolve()
     for current, directories, filenames in os.walk(source, followlinks=False):
         current_path = Path(current)
-        directories[:] = [
+        directories[:] = sorted(
             name for name in directories
             if name not in DEFAULT_IGNORES
             and not (current_path / name).is_symlink()
             and (current_path / name).resolve() != output_resolved
-        ]
+        )
         for filename in sorted(filenames):
             path = current_path / filename
             if path.is_symlink():
