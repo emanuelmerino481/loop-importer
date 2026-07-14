@@ -1,0 +1,40 @@
+schema_version: '1.0'
+project_id: SYNTHETIC-RESPONSE-DEMO
+status: DRAFT_HUMAN_REVIEW
+warning: Dependencies are lexical candidates, not verified scientific workflow facts.
+tasks:
+- task_id: IMPORT-PREPARE-042054c79e1f
+  kind: prepare
+  entrypoint: scripts/prepare_data.py
+  depends_on_candidates: []
+  confidence: LOW
+  evidence:
+  - ART-042054c79e1f
+  status: DRAFT_HUMAN_REVIEW
+- task_id: IMPORT-TRAIN-0e048206896e
+  kind: train
+  entrypoint: scripts/train.py
+  depends_on_candidates:
+  - IMPORT-PREPARE-042054c79e1f
+  confidence: LOW
+  evidence:
+  - ART-0e048206896e
+  status: DRAFT_HUMAN_REVIEW
+- task_id: IMPORT-EVALUATE-72effa77bf81
+  kind: evaluate
+  entrypoint: scripts/evaluate.py
+  depends_on_candidates:
+  - IMPORT-TRAIN-0e048206896e
+  confidence: LOW
+  evidence:
+  - ART-72effa77bf81
+  status: DRAFT_HUMAN_REVIEW
+- task_id: IMPORT-REPORT-a2a9387d128d
+  kind: report
+  entrypoint: scripts/report.py
+  depends_on_candidates:
+  - IMPORT-EVALUATE-72effa77bf81
+  confidence: LOW
+  evidence:
+  - ART-a2a9387d128d
+  status: DRAFT_HUMAN_REVIEW

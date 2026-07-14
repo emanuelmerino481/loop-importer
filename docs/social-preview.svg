@@ -1,0 +1,38 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1280" height="640" viewBox="0 0 1280 640" role="img" aria-labelledby="title desc">
+  <title id="title">Research Project Importer</title>
+  <desc id="desc">Turn a messy scientific project into an evidence-linked, human-reviewed Agent Harness draft.</desc>
+  <defs>
+    <linearGradient id="background" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#07132e"/><stop offset=".55" stop-color="#172554"/><stop offset="1" stop-color="#312e81"/></linearGradient>
+    <filter id="shadow"><feDropShadow dx="0" dy="12" stdDeviation="16" flood-color="#020617" flood-opacity=".35"/></filter>
+    <marker id="arrow" markerWidth="12" markerHeight="12" refX="10" refY="4" orient="auto"><path d="M0,0 L0,8 L11,4 z" fill="#93c5fd"/></marker>
+  </defs>
+  <rect width="1280" height="640" fill="url(#background)"/>
+  <circle cx="1110" cy="80" r="190" fill="#3b82f6" opacity=".12"/>
+  <circle cx="120" cy="610" r="240" fill="#8b5cf6" opacity=".12"/>
+  <text x="72" y="100" fill="#fff" font-family="system-ui,sans-serif" font-size="54" font-weight="750">Research Project Importer</text>
+  <text x="75" y="148" fill="#bfdbfe" font-family="system-ui,sans-serif" font-size="24">Messy research folder → evidence-linked Harness draft → human approval</text>
+  <g filter="url(#shadow)" font-family="system-ui,sans-serif">
+    <rect x="72" y="218" width="310" height="260" rx="24" fill="#fff"/>
+    <text x="108" y="270" fill="#0f172a" font-size="25" font-weight="700">Existing project</text>
+    <text x="108" y="319" fill="#475569" font-size="19">scripts + configs</text>
+    <text x="108" y="354" fill="#475569" font-size="19">old metrics + seeds</text>
+    <text x="108" y="389" fill="#475569" font-size="19">checkpoints + GPU logs</text>
+    <rect x="108" y="429" width="190" height="10" rx="5" fill="#f59e0b"/>
+    <rect x="485" y="218" width="310" height="260" rx="24" fill="#fff"/>
+    <text x="521" y="270" fill="#0f172a" font-size="25" font-weight="700">Read-only import</text>
+    <text x="521" y="319" fill="#475569" font-size="19">stable evidence IDs</text>
+    <text x="521" y="354" fill="#475569" font-size="19">redacted secrets</text>
+    <text x="521" y="389" fill="#475569" font-size="19">LOW-confidence DAG</text>
+    <rect x="521" y="429" width="190" height="10" rx="5" fill="#3b82f6"/>
+    <rect x="898" y="218" width="310" height="260" rx="24" fill="#fff"/>
+    <text x="934" y="270" fill="#0f172a" font-size="25" font-weight="700">Human review</text>
+    <text x="934" y="319" fill="#475569" font-size="19">one question at a time</text>
+    <text x="934" y="354" fill="#475569" font-size="19">confirm or correct</text>
+    <text x="934" y="389" fill="#475569" font-size="19">approve before activation</text>
+    <rect x="934" y="429" width="190" height="10" rx="5" fill="#22c55e"/>
+  </g>
+  <path d="M402 348 H462" stroke="#93c5fd" stroke-width="6" marker-end="url(#arrow)"/>
+  <path d="M815 348 H875" stroke="#93c5fd" stroke-width="6" marker-end="url(#arrow)"/>
+  <rect x="72" y="532" width="538" height="52" rx="26" fill="#ffffff" opacity=".11" stroke="#bfdbfe" stroke-opacity=".35"/>
+  <text x="100" y="566" fill="#e0f2fe" font-family="system-ui,sans-serif" font-size="21" font-weight="600">Never execute source code. Never promote guesses to facts.</text>
+</svg>

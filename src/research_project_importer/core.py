@@ -190,7 +190,7 @@ def _task_kind(path: Path) -> str | None:
 
 
 def _build_task_candidates(entries: list[dict[str, Any]]) -> list[dict[str, Any]]:
-    tasks: list[dict[str, Any]] = []
+    candidates: list[dict[str, Any]] = []
     seen: set[tuple[str, str]] = set()
     for entry in entries:
         if entry["category"] != "script":
@@ -202,31 +202,45 @@ def _build_task_candidates(entries: list[dict[str, Any]]) -> list[dict[str, Any]
         if key in seen:
             continue
         seen.add(key)
-        task_id = _stable_id(f"IMPORT-{kind.upper()}", entry["path"])
-        dependencies: list[str] = []
-        prior = {task["kind"]: task["task_id"] for task in tasks}
-        if kind == "train" and "prepare" in prior:
-            dependencies.append(prior["prepare"])
-        elif kind == "infer" and "train" in prior:
-            dependencies.append(prior["train"])
-        elif kind == "evaluate":
-            if "infer" in prior:
-                dependencies.append(prior["infer"])
-            elif "train" in prior:
-                dependencies.append(prior["train"])
-        elif kind == "report" and "evaluate" in prior:
-            dependencies.append(prior["evaluate"])
-        tasks.append({
-            "task_id": task_id,
+        candidates.append({
+            "task_id": _stable_id(f"IMPORT-{kind.upper()}", entry["path"]),
             "kind": kind,
             "entrypoint": entry["path"],
+            "evidence": [entry["artifact_id"]],
+        })
+        if len(candidates) >= 100:
+            break
+
+    stage_order = {"prepare": 0, "train": 1, "infer": 2, "evaluate": 3, "report": 4}
+    candidates.sort(key=lambda item: (stage_order[item["kind"]], item["entrypoint"]))
+    first_by_kind: dict[str, str] = {}
+    for candidate in candidates:
+        first_by_kind.setdefault(candidate["kind"], candidate["task_id"])
+
+    tasks: list[dict[str, Any]] = []
+    for candidate in candidates:
+        kind = candidate["kind"]
+        dependencies: list[str] = []
+        if kind == "train" and "prepare" in first_by_kind:
+            dependencies.append(first_by_kind["prepare"])
+        elif kind == "infer" and "train" in first_by_kind:
+            dependencies.append(first_by_kind["train"])
+        elif kind == "evaluate":
+            if "infer" in first_by_kind:
+                dependencies.append(first_by_kind["infer"])
+            elif "train" in first_by_kind:
+                dependencies.append(first_by_kind["train"])
+        elif kind == "report" and "evaluate" in first_by_kind:
+            dependencies.append(first_by_kind["evaluate"])
+        tasks.append({
+            "task_id": candidate["task_id"],
+            "kind": kind,
+            "entrypoint": candidate["entrypoint"],
             "depends_on_candidates": dependencies,
             "confidence": "LOW",
-            "evidence": [entry["artifact_id"]],
+            "evidence": candidate["evidence"],
             "status": "DRAFT_HUMAN_REVIEW",
         })
-        if len(tasks) >= 100:
-            break
     return tasks
 
 

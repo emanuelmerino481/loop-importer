@@ -1,0 +1,19 @@
+name: Feature request
+description: Propose a new importer, evidence, or review capability
+title: "[Feature]: "
+labels: [enhancement]
+body:
+  - type: textarea
+    id: use_case
+    attributes:
+      label: Research migration use case
+      description: What existing project structure or decision is difficult to import?
+    validations:
+      required: true
+  - type: textarea
+    id: evidence
+    attributes:
+      label: Evidence and safety boundary
+      description: What can be observed mechanically, and what must remain a human decision?
+    validations:
+      required: true

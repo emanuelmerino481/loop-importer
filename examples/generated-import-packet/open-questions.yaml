@@ -1,0 +1,144 @@
+schema_version: '1.0'
+project_id: SYNTHETIC-RESPONSE-DEMO
+status: HUMAN_REVIEW_REQUIRED
+interaction_policy:
+  one_question_at_a_time: true
+  inspect_available_evidence_before_asking: true
+  provide_recommended_answer: true
+  wait_for_human_answer: true
+  do_not_activate_before_all_required_resolved: true
+  allowed_verdicts:
+  - PENDING
+  - CONFIRM_CORRECT
+  - CORRECTED
+  - REJECT_INFERENCE
+  - NEEDS_EVIDENCE
+questions:
+- id: Q-PRIMARY-GOAL
+  question: 正式科研目标和非目标是什么？
+  agent_recommended_answer: 用一个可证伪的主目标描述成功，并明确至少一个非目标；不要从 README 自动升级为正式目标。
+  evidence_candidates:
+  - ART-b33563055168
+  depends_on: []
+  human_answer: null
+  human_verdict: PENDING
+  correction_or_notes: null
+  resolution_status: OPEN
+  required: true
+- id: Q-DATASET
+  question: 哪一份数据及其版本/hash 是正式输入？
+  agent_recommended_answer: 选择唯一正式数据版本，并通过单独获批的证据任务计算 hash；本次扫描结果只能作为候选。
+  evidence_candidates:
+  - ART-09f531bdba07
+  depends_on:
+  - Q-PRIMARY-GOAL
+  human_answer: null
+  human_verdict: PENDING
+  correction_or_notes: null
+  resolution_status: OPEN
+  required: true
+- id: Q-METRIC
+  question: 主指标、辅助指标、统计单位和成功阈值是什么？
+  agent_recommended_answer: 先定义 estimand、实验单位和聚合口径，再冻结一个主指标；不得从结果文件名反推正式指标。
+  evidence_candidates:
+  - ART-9f2c4d94e6f8
+  - ART-e10429ed8705
+  - ART-463cc7bffb2f
+  - ART-b44db29c0da2
+  - ART-72effa77bf81
+  - ART-042054c79e1f
+  - ART-a2a9387d128d
+  - ART-0e048206896e
+  depends_on:
+  - Q-PRIMARY-GOAL
+  - Q-DATASET
+  human_answer: null
+  human_verdict: PENDING
+  correction_or_notes: null
+  resolution_status: OPEN
+  required: true
+- id: Q-SEEDS
+  question: 正式 seed 列表及失败 seed 保留策略是什么？
+  agent_recommended_answer: 显式列出全部正式 seed，成功与失败均保留；日志中出现的 seed 只是候选。
+  evidence_candidates:
+  - ART-9f2c4d94e6f8
+  - ART-e10429ed8705
+  - ART-463cc7bffb2f
+  - ART-b44db29c0da2
+  - ART-72effa77bf81
+  - ART-042054c79e1f
+  - ART-a2a9387d128d
+  - ART-0e048206896e
+  depends_on:
+  - Q-METRIC
+  human_answer: null
+  human_verdict: PENDING
+  correction_or_notes: null
+  resolution_status: OPEN
+  required: true
+- id: Q-BASELINE
+  question: 正式 baseline、当前最佳结果和对应 commit/config/checkpoint 是什么？
+  agent_recommended_answer: baseline 与最佳结果都应绑定 commit、配置、数据版本、seed、checkpoint 和原始评价输出。
+  evidence_candidates:
+  - ART-b360f0572ec9
+  - ART-9f2c4d94e6f8
+  - ART-e10429ed8705
+  - ART-463cc7bffb2f
+  - ART-b44db29c0da2
+  depends_on:
+  - Q-DATASET
+  - Q-METRIC
+  - Q-SEEDS
+  human_answer: null
+  human_verdict: PENDING
+  correction_or_notes: null
+  resolution_status: OPEN
+  required: true
+- id: Q-GPU
+  question: GPU 型号、数量、GPU-hours 预算和停止条件是什么？
+  agent_recommended_answer: 先做受限 GPU pilot，再确定批量、精度、吞吐和 GPU-hours 上限；未知异常默认停止并报告。
+  evidence_candidates:
+  - ART-9f2c4d94e6f8
+  - ART-e10429ed8705
+  - ART-463cc7bffb2f
+  - ART-b44db29c0da2
+  - ART-72effa77bf81
+  - ART-042054c79e1f
+  - ART-a2a9387d128d
+  - ART-0e048206896e
+  depends_on:
+  - Q-SEEDS
+  human_answer: null
+  human_verdict: PENDING
+  correction_or_notes: null
+  resolution_status: OPEN
+  required: true
+- id: Q-PROTECTED
+  question: 哪些路径、评价器、协议和阈值必须冻结？
+  agent_recommended_answer: 至少保护原始数据、主评价器、冻结协议、成功阈值和历史 run，并由人工确认例外。
+  evidence_candidates:
+  - ART-9f2c4d94e6f8
+  - ART-09f531bdba07
+  - ART-463cc7bffb2f
+  - ART-b44db29c0da2
+  - ART-72effa77bf81
+  - ART-042054c79e1f
+  - ART-a2a9387d128d
+  - ART-0e048206896e
+  depends_on:
+  - Q-METRIC
+  human_answer: null
+  human_verdict: PENDING
+  correction_or_notes: null
+  resolution_status: OPEN
+  required: true
+- id: Q-VERSIONING
+  question: 项目没有可识别 Git commit，采用什么版本标识？
+  agent_recommended_answer: 先创建可审计的代码快照或 commit；在此之前不得启动正式实验。
+  evidence_candidates: []
+  depends_on: []
+  human_answer: null
+  human_verdict: PENDING
+  correction_or_notes: null
+  resolution_status: OPEN
+  required: true

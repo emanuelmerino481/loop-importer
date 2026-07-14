@@ -53,6 +53,21 @@ class ImporterTests(unittest.TestCase):
             with self.assertRaises(ImportProjectError):
                 import_project(source, source / "packet", ImportOptions(project_id="BAD"))
 
+    def test_dag_dependencies_do_not_depend_on_filename_order(self) -> None:
+        with tempfile.TemporaryDirectory() as temp:
+            root = Path(temp)
+            source = root / "source"
+            output = root / "packet"
+            source.mkdir()
+            for name in ("evaluate.py", "prepare_data.py", "report.py", "train.py"):
+                (source / name).write_text("# documentary candidate\n", encoding="utf-8")
+            import_project(source, output, ImportOptions(project_id="DAG"))
+            dag = yaml.safe_load((output / "task-dag.yaml").read_text(encoding="utf-8"))
+            tasks = {item["kind"]: item for item in dag["tasks"]}
+            self.assertEqual([tasks["prepare"]["task_id"]], tasks["train"]["depends_on_candidates"])
+            self.assertEqual([tasks["train"]["task_id"]], tasks["evaluate"]["depends_on_candidates"])
+            self.assertEqual([tasks["evaluate"]["task_id"]], tasks["report"]["depends_on_candidates"])
+
     def test_remote_credentials_are_removed(self) -> None:
         completed = subprocess.CompletedProcess(
             args=[], returncode=0,

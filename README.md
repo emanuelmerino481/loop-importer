@@ -1,18 +1,38 @@
 # Research Project Importer
 
-把已经用 IDE、脚本和服务器人工维护的科研项目，只读转换为可审核的 Agent Harness 导入草案。它解决“项目在哪里、脚本依赖什么、哪些判断只是模型猜测、人工应该审什么”，但不会自动宣称实验正确。
+[![tests](https://github.com/emanuelmerino481/research-project-importer/actions/workflows/tests.yml/badge.svg)](https://github.com/emanuelmerino481/research-project-importer/actions/workflows/tests.yml)
+[![Python 3.11+](https://img.shields.io/badge/python-3.11%2B-3776ab)](https://www.python.org/)
+[![Apache-2.0](https://img.shields.io/badge/license-Apache--2.0-green)](LICENSE)
 
-## 关键原则
+[中文说明](README.zh-CN.md)
 
-- 源项目只读：不运行脚本、不改文件、不跟随符号链接。
-- 安全盘点：跳过 Git、虚拟环境、缓存、WandB 和 MLflow；秘密文件只登记脱敏元数据。
-- 科研判断由人负责：指标、统计单位、数据版本、seed、baseline、阈值和结论都必须审核。
-- 一次只审一个问题：先查看证据 ID，展示 Agent 推荐答案，等待人工确认、修正、拒绝或要求补证。
-- 所有必答项解决前，状态始终是 `DRAFT_HUMAN_REVIEW`，不得启动正式实验。
+**Turn an existing scientific project into a reviewable Agent Harness draft—with one command, without executing or modifying the source project.**
 
-## 安装与使用
+![Read-only project import followed by human review](docs/demo-flow.svg)
+
+Long-running research projects accumulate scripts, configs, checkpoints, old metrics, GPU logs, and undocumented decisions. An Agent can inventory these files, but it must not silently convert guesses into scientific facts. Research Project Importer creates an evidence-linked draft and makes every unresolved scientific decision explicit.
+
+## See the complete demo
+
+The repository includes a deliberately incomplete synthetic research project containing conflicting seeds, an unfrozen metric, an ambiguous “best” result, a GPU log, and a secret-like file.
+
+**[Explore the before/after demo →](examples/README.md)**
+
+| Before: observed files | After: reviewable evidence |
+| --- | --- |
+| `configs/experiment.yaml` | [`project-manifest.yaml`](examples/generated-import-packet/project-manifest.yaml) |
+| `scripts/{prepare,train,evaluate,report}.py` | [`artifact-registry.yaml`](examples/generated-import-packet/artifact-registry.yaml) |
+| conflicting `results/*.json` | [`task-dag.yaml`](examples/generated-import-packet/task-dag.yaml) |
+| GPU log without utilization | [`review-session.yaml`](examples/generated-import-packet/review-session.yaml) |
+| `.env` | redacted metadata, no content or hash |
+
+The generated DAG remains `LOW` confidence. The review session asks one question at a time, shows evidence IDs and an Agent recommendation, then waits for a human verdict before continuing.
+
+## Quick start
 
 ```bash
+git clone https://github.com/emanuelmerino481/research-project-importer.git
+cd research-project-importer
 python -m pip install -e .
 
 research-project-import /path/to/existing-project \
@@ -23,29 +43,42 @@ python skills/research-project-importer/scripts/validate_import.py \
   /path/to/imports/MY-PROJECT
 ```
 
-输出包括：
+The packet contains:
 
-- `project-manifest.yaml`：扫描范围、语言、Git 元数据和分类计数；
-- `artifact-registry.yaml`：稳定 artifact ID、路径、大小与受控 hash；
-- `task-dag.yaml`：低置信度的训练、推理、评估和报告候选；
-- `open-questions.yaml` / `review-session.yaml`：推荐答案、证据、依赖和人工裁决；
-- `bootstrap.md`：新会话冷启动入口；
-- `import-summary.json` 与中文 `import-report.html`。
+- `project-manifest.yaml` — scan boundary, languages, Git metadata, and category counts;
+- `artifact-registry.yaml` — stable artifact IDs, sizes, redaction state, and bounded hashes;
+- `task-dag.yaml` — low-confidence prepare/train/infer/evaluate/report candidates;
+- `review-session.yaml` — evidence, recommended answers, dependencies, and human verdicts;
+- `bootstrap.md` — cold-start context for a new Agent session;
+- `import-summary.json` and a Chinese `import-report.html`.
+
+## Safety model
+
+- Never executes source project code.
+- Never modifies or reorganizes the source project.
+- Does not follow symlinks or traverse Git metadata, environments, caches, WandB, or MLflow stores.
+- Never reads or hashes secret-like files.
+- Does not hash large datasets or checkpoints during reconnaissance.
+- Removes credentials and query parameters from HTTP Git remotes.
+- Refuses to place output inside the source directory.
+- Keeps the packet in `DRAFT_HUMAN_REVIEW` until required human decisions are resolved.
+
+This is reconnaissance software, not a sandbox and not scientific verification. Review generated paths before sharing a packet.
 
 ## Codex Skill
 
-仓库内的 `skills/research-project-importer/` 可安装为 Codex Skill。它要求 Agent 逐题审核，不允许把文件名推断升级为科研事实，也不允许在人工放行前激活任务。
+`skills/research-project-importer/` is an installable Codex Skill. It requires evidence-first, one-question-at-a-time review and prevents an Agent from activating tasks before explicit human approval.
 
-## 安全边界
+## Why the demo is synthetic
 
-请先在副本或只读挂载上试用。扫描器不会读取秘密文件内容，也会清除 Git HTTP remote 中的用户名、密码和 query；但文件路径本身仍可能包含项目敏感信息，公开报告前必须人工检查。大文件和 checkpoint 不在侦察阶段计算 hash。
+Its structure reflects common research layouts documented by projects such as [Cookiecutter Data Science](https://github.com/drivendataorg/cookiecutter-data-science), while all demo content is original. This keeps the example realistic, reproducible, small, and free of third-party dataset or research-result claims.
 
-安全问题请按 [SECURITY.md](SECURITY.md) 私下报告。
+## Status and contributing
 
-## 致谢与来源
+The project is an early public release. Useful next steps include richer dependency evidence, additional language detectors, packet schema versioning, and integrations with existing Harness frameworks. See [CONTRIBUTING.md](CONTRIBUTING.md) before opening a pull request. Security-sensitive reports belong in [SECURITY.md](SECURITY.md), not a public issue.
 
-人工问答审核工作流受到 [mattpocock/skills](https://github.com/mattpocock/skills) 中 `grilling`、`grill-me` 和 `grill-with-docs` 的启发：一次一题、先检查事实、提供推荐答案并等待人类决策。上游采用 MIT License；本仓库未复制其实现代码，而是在科研导入场景中增加证据 ID、裁决字段、依赖与激活门。固定版本和采用边界见 [docs/SOURCES.md](docs/SOURCES.md)。
+## Acknowledgements and license
 
-## License
+The human-review interaction was inspired by the `grilling`, `grill-me`, and `grill-with-docs` skills in [mattpocock/skills](https://github.com/mattpocock/skills). No upstream implementation code was copied; the pinned revision and adaptation boundary are documented in [docs/SOURCES.md](docs/SOURCES.md).
 
-Apache-2.0。
+Licensed under [Apache-2.0](LICENSE).
