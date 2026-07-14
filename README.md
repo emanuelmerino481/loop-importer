@@ -1,10 +1,16 @@
-# Research Project Importer
+<picture>
+  <source media="(prefers-color-scheme: dark)" srcset="docs/hero-dark.svg">
+  <source media="(prefers-color-scheme: light)" srcset="docs/hero-light.svg">
+  <img alt="Research Project Importer — evidence first, human approved" src="docs/hero-light.svg">
+</picture>
 
 [![tests](https://github.com/emanuelmerino481/research-project-importer/actions/workflows/tests.yml/badge.svg)](https://github.com/emanuelmerino481/research-project-importer/actions/workflows/tests.yml)
 [![Python 3.11+](https://img.shields.io/badge/python-3.11%2B-3776ab)](https://www.python.org/)
 [![Apache-2.0](https://img.shields.io/badge/license-Apache--2.0-green)](LICENSE)
 
 [中文说明](README.zh-CN.md)
+
+## Import existing research without importing its ambiguity
 
 **Turn an existing scientific project into a reviewable Agent Harness draft—with one command, without executing or modifying the source project.**
 

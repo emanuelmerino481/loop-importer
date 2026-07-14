@@ -1,6 +1,12 @@
-# Research Project Importer
+<picture>
+  <source media="(prefers-color-scheme: dark)" srcset="docs/hero-dark.svg">
+  <source media="(prefers-color-scheme: light)" srcset="docs/hero-light.svg">
+  <img alt="Research Project Importer——证据优先，人工批准" src="docs/hero-light.svg">
+</picture>
 
 [English](README.md)
+
+## 导入旧项目，不导入它的含糊判断
 
 **用一条命令，把长期靠 IDE、脚本和服务器人工维护的科研项目转换成可审核的 Agent Harness 草案；不执行、不修改源项目。**
 
