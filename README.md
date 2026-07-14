@@ -18,6 +18,20 @@
 
 Long-running research projects accumulate scripts, configs, checkpoints, old metrics, GPU logs, and undocumented decisions. An Agent can inventory these files, but it must not silently convert guesses into scientific facts. Research Project Importer creates an evidence-linked draft and makes every unresolved scientific decision explicit.
 
+## 💌 A note from the builder
+
+Hi! I am a first-year university student, still very early in learning AI-assisted development, Agents, and Harnesses. 👋🌱
+
+I started with Trae, using it step by step to work on projects I had already begun. As those projects grew, scripts, configs, experiment results, GPU notes, and unfinished decisions ended up everywhere. I wanted a real Loop: let an Agent understand the project, make a bounded change, run or verify it, preserve the evidence, report back, and continue. 🔁🧪
+
+Then I discovered that connecting an **existing** project to a Loop is much harder than starting a clean demo from a template. A model finding `train.py` does not mean it knows the official entrypoint. Seeing the largest accuracy value does not mean it knows the primary metric. Reading the files does not mean it understands the experiment. And once a conversation is lost, a lot of project context disappears with it. 😵‍💫
+
+That frustration is why I built this small tool. It is for the slightly awkward group of developers, students, and researchers whose projects are already alive—and already messy—but who still want to move toward an Agent-driven workflow without throwing away history or handing every decision to the model. 🧰🤖
+
+This is my first public attempt, so it will not be perfect. If it helps, please try it and tell me what breaks. If I misunderstood something, open an issue and correct me. A Star is lovely ⭐, but a real project that this tool can help is even better. ❤️
+
+— [@emanuelmerino481](https://github.com/emanuelmerino481)
+
 ## See the complete demo
 
 The repository includes a deliberately incomplete synthetic research project containing conflicting seeds, an unfrozen metric, an ambiguous “best” result, a GPU log, and a secret-like file.
