@@ -41,7 +41,11 @@ def _normalize_fixture_line_endings(root: Path) -> None:
 def main() -> int:
     if OUTPUT.exists():
         shutil.rmtree(OUTPUT)
-    with tempfile.TemporaryDirectory(prefix="research-import-demo-") as temp:
+    # Keep the copied fixture outside this repository so Git discovery is
+    # deterministic on local machines and CI runners.
+    with tempfile.TemporaryDirectory(
+        prefix="research-import-demo-", dir=ROOT.parent
+    ) as temp:
         source = Path(temp) / "incomplete-research-project"
         shutil.copytree(FIXTURE, source)
         _normalize_fixture_line_endings(source)

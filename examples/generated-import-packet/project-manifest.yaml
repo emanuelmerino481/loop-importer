@@ -10,12 +10,12 @@ scanner_limits:
   max_text_bytes: 262144
   hash_max_bytes: 1048576
 git:
-  is_repository: true
-  root: D:/蛋白设计/loop-importer
-  commit: 053ad4bd626b440dd7b7c6eb21eee96892d5b6c7
-  dirty: true
-  changed_path_count: 28
-  origin: https://github.com/emanuelmerino481/loop-importer.git
+  is_repository: false
+  root: null
+  commit: null
+  dirty: null
+  changed_path_count: 0
+  origin: null
 summary:
   file_count: 14
   total_bytes: 2947
