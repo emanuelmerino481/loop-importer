@@ -15,6 +15,9 @@ from urllib.parse import urlsplit, urlunsplit
 
 import yaml
 
+from .codegraph import build_code_graph
+from .context import build_knowledge_baseline
+
 
 DEFAULT_IGNORES = {
     ".git", ".hg", ".svn", ".idea", ".vscode", ".venv", "venv",
@@ -262,6 +265,26 @@ def import_project(source: str | Path, output: str | Path, options: ImportOption
     if source_path == output_path or source_path in output_path.parents:
         raise ImportProjectError("output must be outside the imported project")
 
+    previous_code_graph: dict[str, Any] | None = None
+    previous_code_graph_path = output_path / "code-graph.json"
+    if previous_code_graph_path.is_file():
+        try:
+            candidate = json.loads(previous_code_graph_path.read_text(encoding="utf-8"))
+            if isinstance(candidate, dict):
+                previous_code_graph = candidate
+        except (OSError, json.JSONDecodeError):
+            previous_code_graph = None
+
+    previous_knowledge_baseline: dict[str, Any] | None = None
+    previous_knowledge_path = output_path / "knowledge-baseline.yaml"
+    if previous_knowledge_path.is_file():
+        try:
+            candidate = yaml.safe_load(previous_knowledge_path.read_text(encoding="utf-8"))
+            if isinstance(candidate, dict):
+                previous_knowledge_baseline = candidate
+        except (OSError, yaml.YAMLError):
+            previous_knowledge_baseline = None
+
     output_path.mkdir(parents=True, exist_ok=True)
     artifacts: list[dict[str, Any]] = []
     language_counts: Counter[str] = Counter()
@@ -296,8 +319,21 @@ def import_project(source: str | Path, output: str | Path, options: ImportOption
             "language": language,
         })
 
+    code_graph = build_code_graph(
+        source=source_path,
+        artifacts=artifacts,
+        project_id=options.project_id,
+        max_source_bytes=options.max_text_bytes,
+        previous_graph=previous_code_graph,
+    )
     git = _git_metadata(source_path)
     tasks = _build_task_candidates(artifacts)
+    knowledge_baseline = build_knowledge_baseline(
+        project_id=options.project_id,
+        artifacts=artifacts,
+        task_candidates=tasks,
+        previous_baseline=previous_knowledge_baseline,
+    )
     generated_at = _utc_now()
     manifest = {
         "schema_version": "1.0",
@@ -314,6 +350,8 @@ def import_project(source: str | Path, output: str | Path, options: ImportOption
             "categories": dict(category_counts),
             "languages": dict(language_counts),
             "text_signals": dict(signal_counts),
+            "code_graph": code_graph["summary"],
+            "knowledge_baseline": knowledge_baseline["summary"],
         },
     }
     def review_question(
@@ -406,6 +444,8 @@ def import_project(source: str | Path, output: str | Path, options: ImportOption
     _write_yaml(output_path / "project-manifest.yaml", manifest)
     _write_yaml(output_path / "artifact-registry.yaml", registry)
     _write_yaml(output_path / "task-dag.yaml", dag)
+    _write_json(output_path / "code-graph.json", code_graph)
+    _write_yaml(output_path / "knowledge-baseline.yaml", knowledge_baseline)
     review_session = {
         "schema_version": "1.0",
         "project_id": options.project_id,
@@ -454,4 +494,7 @@ def import_project(source: str | Path, output: str | Path, options: ImportOption
         "file_count": len(artifacts),
         "task_candidate_count": len(tasks),
         "required_question_count": len(questions),
+        "code_graph_node_count": code_graph["summary"]["node_count"],
+        "code_graph_edge_count": code_graph["summary"]["edge_count"],
+        "knowledge_fact_count": knowledge_baseline["summary"]["fact_count"],
     }

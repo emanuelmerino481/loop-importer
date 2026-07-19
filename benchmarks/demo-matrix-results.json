@@ -1,0 +1,469 @@
+{
+  "schema_version": "1.0",
+  "benchmark": "read-only-import-demo-matrix",
+  "run_timestamp_utc": "2026-07-18T12:34:50.882448+00:00",
+  "runner": {
+    "runner_version": "1.0",
+    "python_version": "3.11.15",
+    "platform": "Windows-10-10.0.26100-SP0",
+    "loop_importer_git_commit": "053ad4bd626b440dd7b7c6eb21eee96892d5b6c7",
+    "loop_importer_worktree_dirty": true,
+    "tested_code_digest": "aafe9bcefa811db9325db983d68246ac073f3192a6e3e1a41cbe8b73854b52fa",
+    "tested_code_digest_algorithm": "SHA-256 of canonical UTF-8 JSON containing sorted repository-relative paths and each file's raw-byte SHA-256.",
+    "tested_code_paths": [
+      "src/loop_importer/__init__.py",
+      "src/loop_importer/cli.py",
+      "src/loop_importer/codegraph.py",
+      "src/loop_importer/context.py",
+      "src/loop_importer/context_cli.py",
+      "src/loop_importer/core.py",
+      "benchmarks/run_demo_matrix.py",
+      "skills/loop-importer/scripts/validate_import.py",
+      "pyproject.toml"
+    ]
+  },
+  "pass_definition": "PASS means every scenario-specific assertion passed and the generated packet returned IMPORT_PACKET_VALID. Expected, explicitly recorded parse errors may be present; PASS does not mean every source file parsed successfully.",
+  "count_definitions": {
+    "file_count": "Final source-snapshot files observed by the bounded scanner.",
+    "python_file_count": "Observed non-redacted Python artifacts, including files skipped or reporting parse errors.",
+    "code_node_count": "Static module, class, function, and method nodes accepted into the final graph.",
+    "code_edge_count": "Resolved CONTAINS, IMPORTS, and CALLS structural edges in the final graph."
+  },
+  "source_tree_digest_algorithm": "SHA-256 of canonical UTF-8 JSON containing repository-relative POSIX paths and raw-byte SHA-256 values for all recursively sorted files; .git paths, directories, timestamps, permissions, and other filesystem metadata are excluded.",
+  "scope": "Six controlled synthetic scenarios and four pinned public GitHub snapshots. Source code was never executed. Public source trees were compared before and after import and remained unchanged. source_mutated is the importer's own claim; the evidence-drift and deletion fixtures intentionally change source files between imports in the benchmark harness.",
+  "summary": {
+    "demo_count": 10,
+    "controlled_demo_count": 6,
+    "public_repository_count": 4,
+    "passed_count": 10,
+    "packet_valid_count": 10,
+    "source_mutation_claim_count": 0,
+    "total_files_observed": 186,
+    "total_python_files": 72,
+    "total_code_nodes": 391,
+    "total_code_edges": 593
+  },
+  "controlled_demos": [
+    {
+      "name": "incomplete-research-project",
+      "purpose": "conflicting research artifacts and one secret-like file",
+      "result": "PASS",
+      "checks": {
+        "source_tree_unchanged": true,
+        "secret_redacted": true,
+        "context_selected_facts": true,
+        "context_selected_code": true,
+        "unchanged_graph_reused": true
+      },
+      "metrics": {
+        "validation": "IMPORT_PACKET_VALID",
+        "status": "DRAFT_HUMAN_REVIEW",
+        "source_mutated": false,
+        "file_count": 14,
+        "task_candidate_count": 4,
+        "redacted_artifact_count": 1,
+        "knowledge_fact_count": 4,
+        "knowledge_validity": {
+          "CURRENT": 4
+        },
+        "python_file_count": 4,
+        "code_node_count": 8,
+        "code_edge_count": 4,
+        "parse_error_count": 0,
+        "unresolved_call_count": 4
+      },
+      "second_import": {
+        "parsed_file_count": 0,
+        "reused_file_count": 4,
+        "first_import_parsed_file_count": 4
+      },
+      "context": {
+        "query": "train metric dataset seed",
+        "payload_bytes": 2701,
+        "selected": {
+          "fact_count": 2,
+          "code_node_count": 2,
+          "code_edge_count": 1
+        }
+      }
+    },
+    {
+      "name": "python-package-aliases",
+      "purpose": "relative imports, aliases, classes, methods, and calls",
+      "result": "PASS",
+      "checks": {
+        "source_tree_unchanged": true,
+        "import_edge_resolved": true,
+        "call_edge_resolved": true,
+        "no_parse_errors": true,
+        "unchanged_graph_reused": true
+      },
+      "metrics": {
+        "validation": "IMPORT_PACKET_VALID",
+        "status": "DRAFT_HUMAN_REVIEW",
+        "source_mutated": false,
+        "file_count": 3,
+        "task_candidate_count": 1,
+        "redacted_artifact_count": 0,
+        "knowledge_fact_count": 1,
+        "knowledge_validity": {
+          "CURRENT": 1
+        },
+        "python_file_count": 3,
+        "code_node_count": 6,
+        "code_edge_count": 5,
+        "parse_error_count": 0,
+        "unresolved_call_count": 2
+      },
+      "second_import": {
+        "parsed_file_count": 0,
+        "reused_file_count": 3,
+        "first_import_parsed_file_count": 3
+      }
+    },
+    {
+      "name": "broken-and-dynamic-python",
+      "purpose": "syntax errors and dynamic calls remain explicit instead of guessed",
+      "result": "PASS",
+      "checks": {
+        "source_tree_unchanged": true,
+        "syntax_error_recorded": true,
+        "dynamic_call_unresolved": true,
+        "packet_still_valid": true
+      },
+      "metrics": {
+        "validation": "IMPORT_PACKET_VALID",
+        "status": "DRAFT_HUMAN_REVIEW",
+        "source_mutated": false,
+        "file_count": 2,
+        "task_candidate_count": 0,
+        "redacted_artifact_count": 0,
+        "knowledge_fact_count": 0,
+        "knowledge_validity": {},
+        "python_file_count": 2,
+        "code_node_count": 4,
+        "code_edge_count": 3,
+        "parse_error_count": 1,
+        "unresolved_call_count": 1
+      },
+      "second_import": {
+        "parsed_file_count": 0,
+        "reused_file_count": 2,
+        "first_import_parsed_file_count": 2
+      },
+      "parse_error_evidence": [
+        {
+          "path": "broken.py",
+          "kind": "SYNTAX_ERROR",
+          "line": 1,
+          "message": "invalid syntax"
+        }
+      ]
+    },
+    {
+      "name": "secret-and-size-bounds",
+      "purpose": "secret redaction plus hash and AST size limits",
+      "result": "PASS",
+      "checks": {
+        "source_tree_unchanged": true,
+        "secret_redacted": true,
+        "secret_value_absent": true,
+        "oversized_code_not_parsed": true,
+        "unhashed_fact_unverified": true
+      },
+      "metrics": {
+        "validation": "IMPORT_PACKET_VALID",
+        "status": "DRAFT_HUMAN_REVIEW",
+        "source_mutated": false,
+        "file_count": 2,
+        "task_candidate_count": 1,
+        "redacted_artifact_count": 1,
+        "knowledge_fact_count": 1,
+        "knowledge_validity": {
+          "UNVERIFIED": 1
+        },
+        "python_file_count": 1,
+        "code_node_count": 0,
+        "code_edge_count": 0,
+        "parse_error_count": 0,
+        "unresolved_call_count": 0
+      },
+      "second_import": {
+        "parsed_file_count": 0,
+        "reused_file_count": 0,
+        "first_import_parsed_file_count": 0
+      }
+    },
+    {
+      "name": "evidence-drift",
+      "purpose": "human decision invalidation after its cited artifact changes",
+      "result": "PASS",
+      "checks": {
+        "changed_file_reparsed": true,
+        "graph_nodes_marked_stale": true,
+        "human_fact_marked_stale": true,
+        "stale_fact_excluded": true,
+        "packet_still_valid": true
+      },
+      "metrics": {
+        "validation": "IMPORT_PACKET_VALID",
+        "status": "DRAFT_HUMAN_REVIEW",
+        "source_mutated": false,
+        "file_count": 1,
+        "task_candidate_count": 1,
+        "knowledge_fact_count": 2,
+        "knowledge_validity": {
+          "CURRENT": 1,
+          "STALE": 1
+        },
+        "python_file_count": 1,
+        "code_node_count": 2,
+        "code_edge_count": 1,
+        "parse_error_count": 0,
+        "unresolved_call_count": 0
+      },
+      "change_import": {
+        "parsed_file_count": 1,
+        "reused_file_count": 0,
+        "stale_node_count": 2,
+        "stale_fact_excluded": true
+      }
+    },
+    {
+      "name": "deleted-evidence",
+      "purpose": "removed source files invalidate their cached graph fragments",
+      "result": "PASS",
+      "checks": {
+        "unchanged_fragment_reused": true,
+        "removed_artifact_reported": true,
+        "removed_nodes_reported": true,
+        "packet_still_valid": true
+      },
+      "metrics": {
+        "validation": "IMPORT_PACKET_VALID",
+        "status": "DRAFT_HUMAN_REVIEW",
+        "source_mutated": false,
+        "file_count": 1,
+        "task_candidate_count": 0,
+        "knowledge_fact_count": 0,
+        "knowledge_validity": {},
+        "python_file_count": 1,
+        "code_node_count": 2,
+        "code_edge_count": 1,
+        "parse_error_count": 0,
+        "unresolved_call_count": 0
+      },
+      "deletion_import": {
+        "parsed_file_count": 0,
+        "reused_file_count": 1,
+        "removed_artifact_count": 1,
+        "removed_node_count": 2
+      }
+    }
+  ],
+  "public_repositories": [
+    {
+      "name": "micrograd",
+      "purpose": "small Python ML library",
+      "result": "PASS",
+      "checks": {
+        "pinned_commit_archive_loaded": true,
+        "source_tree_unchanged": true,
+        "packet_valid": true,
+        "unchanged_graph_reused": true
+      },
+      "metrics": {
+        "validation": "IMPORT_PACKET_VALID",
+        "status": "DRAFT_HUMAN_REVIEW",
+        "source_mutated": false,
+        "file_count": 13,
+        "task_candidate_count": 1,
+        "redacted_artifact_count": 0,
+        "knowledge_fact_count": 1,
+        "knowledge_validity": {
+          "CURRENT": 1
+        },
+        "python_file_count": 5,
+        "code_node_count": 45,
+        "code_edge_count": 58,
+        "parse_error_count": 0,
+        "unresolved_call_count": 58
+      },
+      "second_import": {
+        "parsed_file_count": 0,
+        "reused_file_count": 5,
+        "first_import_parsed_file_count": 5
+      },
+      "repository": "karpathy/micrograd",
+      "url": "https://github.com/karpathy/micrograd",
+      "commit": "c911406e5ace8742e5841a7e0df113ecb5d54685",
+      "commit_url": "https://github.com/karpathy/micrograd/commit/c911406e5ace8742e5841a7e0df113ecb5d54685",
+      "source_archive_sha256": "a098aa5ece7de467f4fb9d1df62cc63e5502ddc83aff1ea29c182e077ec4c859",
+      "source_tree_digest_before": "23f909dddb7f5f65382efede35c1b742391c26de7ed775a25401af8abae68652",
+      "source_tree_digest_after": "23f909dddb7f5f65382efede35c1b742391c26de7ed775a25401af8abae68652",
+      "parse_error_evidence": []
+    },
+    {
+      "name": "nanoGPT",
+      "purpose": "script-and-config training repository",
+      "result": "PASS",
+      "checks": {
+        "pinned_commit_archive_loaded": true,
+        "source_tree_unchanged": true,
+        "packet_valid": true,
+        "unchanged_graph_reused": true
+      },
+      "metrics": {
+        "validation": "IMPORT_PACKET_VALID",
+        "status": "DRAFT_HUMAN_REVIEW",
+        "source_mutated": false,
+        "file_count": 26,
+        "task_candidate_count": 9,
+        "redacted_artifact_count": 0,
+        "knowledge_fact_count": 9,
+        "knowledge_validity": {
+          "CURRENT": 9
+        },
+        "python_file_count": 15,
+        "code_node_count": 45,
+        "code_edge_count": 64,
+        "parse_error_count": 0,
+        "unresolved_call_count": 460
+      },
+      "second_import": {
+        "parsed_file_count": 0,
+        "reused_file_count": 15,
+        "first_import_parsed_file_count": 15
+      },
+      "repository": "karpathy/nanoGPT",
+      "url": "https://github.com/karpathy/nanoGPT",
+      "commit": "3adf61e154c3fe3fca428ad6bc3818b27a3b8291",
+      "commit_url": "https://github.com/karpathy/nanoGPT/commit/3adf61e154c3fe3fca428ad6bc3818b27a3b8291",
+      "source_archive_sha256": "9dffdd9e068d36f786bbc47d8b5b5de723e730f5e9e6cec620dbf92177d5c99a",
+      "source_tree_digest_before": "6e2c59200f94661c8b06f2b28d577ad9b7c337926b542c939773f93aed83aba5",
+      "source_tree_digest_after": "6e2c59200f94661c8b06f2b28d577ad9b7c337926b542c939773f93aed83aba5",
+      "parse_error_evidence": []
+    },
+    {
+      "name": "cookiecutter-data-science",
+      "purpose": "templated data-science project layout",
+      "result": "PASS",
+      "checks": {
+        "pinned_commit_archive_loaded": true,
+        "source_tree_unchanged": true,
+        "packet_valid": true,
+        "unchanged_graph_reused": true
+      },
+      "metrics": {
+        "validation": "IMPORT_PACKET_VALID",
+        "status": "DRAFT_HUMAN_REVIEW",
+        "source_mutated": false,
+        "file_count": 82,
+        "task_candidate_count": 16,
+        "redacted_artifact_count": 1,
+        "knowledge_fact_count": 16,
+        "knowledge_validity": {
+          "CURRENT": 16
+        },
+        "python_file_count": 22,
+        "code_node_count": 57,
+        "code_edge_count": 76,
+        "parse_error_count": 6,
+        "unresolved_call_count": 321
+      },
+      "second_import": {
+        "parsed_file_count": 0,
+        "reused_file_count": 22,
+        "first_import_parsed_file_count": 22
+      },
+      "repository": "drivendataorg/cookiecutter-data-science",
+      "url": "https://github.com/drivendataorg/cookiecutter-data-science",
+      "commit": "0f6b163cdbe3918a2c65ab57ad9fefda93976d9e",
+      "commit_url": "https://github.com/drivendataorg/cookiecutter-data-science/commit/0f6b163cdbe3918a2c65ab57ad9fefda93976d9e",
+      "source_archive_sha256": "2322e2d156263a2d0049825b09a5414c719711f983095fed1ba1b6eb09cd43d6",
+      "source_tree_digest_before": "4098a4c9293ffbf67f0f5c213dc0bbf202176cb28fc68afb734abd111441b083",
+      "source_tree_digest_after": "4098a4c9293ffbf67f0f5c213dc0bbf202176cb28fc68afb734abd111441b083",
+      "parse_error_evidence": [
+        {
+          "path": "{{ cookiecutter.repo_name }}/{{ cookiecutter.module_name }}/__init__.py",
+          "kind": "SYNTAX_ERROR",
+          "line": 1,
+          "message": "invalid syntax"
+        },
+        {
+          "path": "{{ cookiecutter.repo_name }}/{{ cookiecutter.module_name }}/dataset.py",
+          "kind": "SYNTAX_ERROR",
+          "line": 7,
+          "message": "invalid syntax"
+        },
+        {
+          "path": "{{ cookiecutter.repo_name }}/{{ cookiecutter.module_name }}/features.py",
+          "kind": "SYNTAX_ERROR",
+          "line": 7,
+          "message": "invalid syntax"
+        },
+        {
+          "path": "{{ cookiecutter.repo_name }}/{{ cookiecutter.module_name }}/modeling/predict.py",
+          "kind": "SYNTAX_ERROR",
+          "line": 7,
+          "message": "invalid syntax"
+        },
+        {
+          "path": "{{ cookiecutter.repo_name }}/{{ cookiecutter.module_name }}/modeling/train.py",
+          "kind": "SYNTAX_ERROR",
+          "line": 7,
+          "message": "invalid syntax"
+        },
+        {
+          "path": "{{ cookiecutter.repo_name }}/{{ cookiecutter.module_name }}/plots.py",
+          "kind": "SYNTAX_ERROR",
+          "line": 7,
+          "message": "invalid syntax"
+        }
+      ]
+    },
+    {
+      "name": "alphafold2",
+      "purpose": "protein-model research implementation",
+      "result": "PASS",
+      "checks": {
+        "pinned_commit_archive_loaded": true,
+        "source_tree_unchanged": true,
+        "packet_valid": true,
+        "unchanged_graph_reused": true
+      },
+      "metrics": {
+        "validation": "IMPORT_PACKET_VALID",
+        "status": "DRAFT_HUMAN_REVIEW",
+        "source_mutated": false,
+        "file_count": 42,
+        "task_candidate_count": 6,
+        "redacted_artifact_count": 0,
+        "knowledge_fact_count": 6,
+        "knowledge_validity": {
+          "CURRENT": 6
+        },
+        "python_file_count": 18,
+        "code_node_count": 222,
+        "code_edge_count": 381,
+        "parse_error_count": 0,
+        "unresolved_call_count": 1298
+      },
+      "second_import": {
+        "parsed_file_count": 0,
+        "reused_file_count": 18,
+        "first_import_parsed_file_count": 18
+      },
+      "repository": "lucidrains/alphafold2",
+      "url": "https://github.com/lucidrains/alphafold2",
+      "commit": "931466e487e1be87d1182b17ed4ecfac9e70948d",
+      "commit_url": "https://github.com/lucidrains/alphafold2/commit/931466e487e1be87d1182b17ed4ecfac9e70948d",
+      "source_archive_sha256": "654f146b3705815c76b377d28474e50f5a6f59559f81bc25839e25c020dd2397",
+      "source_tree_digest_before": "16983117c25479872c5ddf046cea07d2288178993df502eb425c6e5ea773c1f1",
+      "source_tree_digest_after": "16983117c25479872c5ddf046cea07d2288178993df502eb425c6e5ea773c1f1",
+      "parse_error_evidence": []
+    }
+  ],
+  "result_digest_algorithm": "SHA-256 of canonical UTF-8 JSON with sorted keys and compact separators, computed before the result_digest field is added.",
+  "result_digest": "d6c4a0ad63d5d640718ac5b47293c4dcba96f9759914711a96880443557b18f3"
+}

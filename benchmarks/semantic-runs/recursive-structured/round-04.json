@@ -1,0 +1,1 @@
+{"summary":"Approved (HUMAN_CONFIRMED, CURRENT): primary goal is enzyme activity prediction; explicit non-goal: protein structure generation (ART-CHARTER). Dataset: EnzymeBench v3, snapshot EBV3-7A91 (ART-DATA). Primary metric: macro AUROC; statistical unit: protein family (ART-METRIC). Formal seeds: 7, 21, 42 (ART-SEEDS). No rejected alternatives recorded."}

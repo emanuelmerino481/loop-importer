@@ -132,13 +132,3 @@ questions:
   correction_or_notes: null
   resolution_status: OPEN
   required: true
-- id: Q-VERSIONING
-  question: 项目没有可识别 Git commit，采用什么版本标识？
-  agent_recommended_answer: 先创建可审计的代码快照或 commit；在此之前不得启动正式实验。
-  evidence_candidates: []
-  depends_on: []
-  human_answer: null
-  human_verdict: PENDING
-  correction_or_notes: null
-  resolution_status: OPEN
-  required: true

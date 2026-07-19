@@ -1,0 +1,28 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="620" viewBox="0 0 1200 620" role="img" aria-labelledby="title desc">
+  <title id="title">Controlled semantic summary drift benchmark</title>
+  <desc id="desc">Five isolated one-turn summaries and ten recursive summary rounds compare raw narrative history with structured evidence records.</desc>
+  <style>.title{font:700 28px Inter,Segoe UI,Arial,sans-serif;fill:#0f172a}.sub{font:15px Inter,Segoe UI,Arial,sans-serif;fill:#64748b}.head{font:700 18px Inter,Segoe UI,Arial,sans-serif;fill:#0f172a}.label{font:14px Inter,Segoe UI,Arial,sans-serif;fill:#334155}.value{font:700 15px Inter,Segoe UI,Arial,sans-serif;fill:#0f172a}.small{font:13px Inter,Segoe UI,Arial,sans-serif;fill:#64748b}</style>
+  <rect width="1200" height="620" rx="28" fill="#f8fafc"/><rect x="1" y="1" width="1198" height="618" rx="27" fill="none" stroke="#cbd5e1" stroke-width="2"/>
+  <text x="60" y="54" class="title">Measured semantic retention under summary compression</text>
+  <text x="60" y="82" class="sub">Controlled 11-fact fixture · 110-word summaries · gpt-5.6-sol · isolated ephemeral sessions · no LLM judge</text>
+  <rect x="60" y="112" width="520" height="428" rx="20" fill="#fff" stroke="#dbe4f0"/><rect x="620" y="112" width="520" height="428" rx="20" fill="#fff" stroke="#dbe4f0"/>
+  <text x="88" y="151" class="head">5 independent one-turn summaries</text><text x="648" y="151" class="head">10 recursive summary rounds</text>
+  <circle cx="94" cy="184" r="6" fill="#f59e0b"/><text x="108" y="189" class="small">Raw accumulated narrative</text><circle cx="286" cy="184" r="6" fill="#16a34a"/><text x="300" y="189" class="small">Structured current facts</text>
+  <circle cx="654" cy="184" r="6" fill="#f59e0b"/><text x="668" y="189" class="small">Raw recursive summary</text><circle cx="846" cy="184" r="6" fill="#16a34a"/><text x="860" y="189" class="small">Structured recursive summary</text>
+
+  <text x="88" y="231" class="label">Mean fact recall</text><rect x="170" y="244" width="390" height="12" rx="6" fill="#e2e8f0"/><rect x="170" y="244" width="368.7" height="12" rx="6" fill="#f59e0b"/><text x="568" y="255" text-anchor="end" class="value">94.55%</text>
+  <rect x="170" y="278" width="390" height="12" rx="6" fill="#e2e8f0"/><rect x="170" y="278" width="390.0" height="12" rx="6" fill="#16a34a"/><text x="568" y="289" text-anchor="end" class="value">100%</text>
+  <text x="88" y="342" class="label">Cross-run fact disagreement</text><text x="540" y="342" text-anchor="end" class="value">2 raw · 0 structured</text>
+  <text x="88" y="389" class="label">Mean retention-set Jaccard</text><text x="540" y="389" text-anchor="end" class="value">0.9091 · 1.0000</text>
+  <text x="88" y="436" class="label">Rejected alternatives repeated</text><text x="540" y="436" text-anchor="end" class="value">29 · 0</text>
+  <text x="88" y="493" class="small">Raw summaries disagreed on: statistical_unit, stop_condition</text>
+
+  <text x="648" y="231" class="label">Final fact recall</text><rect x="730" y="244" width="390" height="12" rx="6" fill="#e2e8f0"/><rect x="730" y="244" width="319.1" height="12" rx="6" fill="#f59e0b"/><text x="1128" y="255" text-anchor="end" class="value">81.82%</text>
+  <rect x="730" y="278" width="390" height="12" rx="6" fill="#e2e8f0"/><rect x="730" y="278" width="390.0" height="12" rx="6" fill="#16a34a"/><text x="1128" y="289" text-anchor="end" class="value">100%</text>
+  <text x="648" y="342" class="label">Retention regressions</text><text x="1100" y="342" text-anchor="end" class="value">1 raw · 0 structured</text>
+  <text x="648" y="389" class="label">Word-limit violations</text><text x="1100" y="389" text-anchor="end" class="value">3 · 0</text>
+  <text x="648" y="436" class="label">Rejected alternatives repeated</text><text x="1100" y="436" text-anchor="end" class="value">33 · 0</text>
+  <text x="648" y="481" class="small">Lost after added historical noise: formal_seeds, gpu_budget</text>
+  <text x="60" y="580" class="small">Result scope: one controlled synthetic fixture and one environment-configured model; not a universal model-quality claim.</text>
+  <text x="60" y="602" class="small">Mention count measures context carryover, not mistaken adoption. Raw outputs and semantic aliases are committed for audit.</text>
+</svg>

@@ -1,0 +1,517 @@
+{
+  "schema_version": "1.0",
+  "project_id": "SYNTHETIC-RESPONSE-DEMO",
+  "status": "DRAFT_HUMAN_REVIEW",
+  "engine": "python-ast-lite",
+  "fragment_schema_version": "1.0",
+  "warning": "This graph contains static Python structure only. Unresolved or dynamic calls are not promoted to confirmed relationships or scientific facts.",
+  "scope": {
+    "languages": [
+      "Python"
+    ],
+    "source_execution": false,
+    "source_mutated": false
+  },
+  "summary": {
+    "python_file_count": 4,
+    "fragment_count": 4,
+    "node_count": 8,
+    "edge_count": 4,
+    "node_kinds": {
+      "function": 4,
+      "module": 4
+    },
+    "edge_kinds": {
+      "CONTAINS": 4
+    },
+    "parse_error_count": 0,
+    "unresolved_call_count": 4,
+    "ambiguous_symbol_count": 0
+  },
+  "incremental": {
+    "previous_graph_used": false,
+    "parsed_file_count": 4,
+    "reused_file_count": 0,
+    "new_artifact_ids": [
+      "ART-042054c79e1f",
+      "ART-0e048206896e",
+      "ART-72effa77bf81",
+      "ART-a2a9387d128d"
+    ],
+    "changed_artifact_ids": [],
+    "removed_artifact_ids": [],
+    "stale_node_ids": [],
+    "removed_node_ids": []
+  },
+  "nodes": [
+    {
+      "node_id": "CGN-15f14bbb6cab6fe2",
+      "kind": "function",
+      "name": "build_report",
+      "qualified_name": "scripts.report.build_report",
+      "definition_index": 1,
+      "parent_qualified_name": "scripts.report",
+      "evidence": {
+        "artifact_id": "ART-a2a9387d128d",
+        "sha256": "99019396cb1a3149a55aaf90ffdec62730f2f89a53ad03a1363d2a843915e919",
+        "path": "scripts/report.py",
+        "line_start": 4,
+        "line_end": 5
+      }
+    },
+    {
+      "node_id": "CGN-2b9956c90b3b528e",
+      "kind": "module",
+      "name": "scripts.report",
+      "qualified_name": "scripts.report",
+      "definition_index": 1,
+      "parent_qualified_name": null,
+      "evidence": {
+        "artifact_id": "ART-a2a9387d128d",
+        "sha256": "99019396cb1a3149a55aaf90ffdec62730f2f89a53ad03a1363d2a843915e919",
+        "path": "scripts/report.py",
+        "line_start": 1,
+        "line_end": 5
+      }
+    },
+    {
+      "node_id": "CGN-2befa1f0ebb5294a",
+      "kind": "function",
+      "name": "candidate_inputs",
+      "qualified_name": "scripts.prepare_data.candidate_inputs",
+      "definition_index": 1,
+      "parent_qualified_name": "scripts.prepare_data",
+      "evidence": {
+        "artifact_id": "ART-042054c79e1f",
+        "sha256": "5ec30d083a48e60c21baedf653f1f92789950991d6f55434b1a6e24b8f47d6bf",
+        "path": "scripts/prepare_data.py",
+        "line_start": 6,
+        "line_end": 7
+      }
+    },
+    {
+      "node_id": "CGN-416c3d43317beee2",
+      "kind": "module",
+      "name": "scripts.train",
+      "qualified_name": "scripts.train",
+      "definition_index": 1,
+      "parent_qualified_name": null,
+      "evidence": {
+        "artifact_id": "ART-0e048206896e",
+        "sha256": "53b13e3af8f764734b70514ea2976eada1be32b3500a8453a23aec76c0022d06",
+        "path": "scripts/train.py",
+        "line_start": 1,
+        "line_end": 7
+      }
+    },
+    {
+      "node_id": "CGN-5bdcd1115642971f",
+      "kind": "module",
+      "name": "scripts.evaluate",
+      "qualified_name": "scripts.evaluate",
+      "definition_index": 1,
+      "parent_qualified_name": null,
+      "evidence": {
+        "artifact_id": "ART-72effa77bf81",
+        "sha256": "51253a78f521d059f41c71120c103130d4212df61c5b9725c28a0dbdb88a46ba",
+        "path": "scripts/evaluate.py",
+        "line_start": 1,
+        "line_end": 5
+      }
+    },
+    {
+      "node_id": "CGN-bf22ad612fdd3d45",
+      "kind": "function",
+      "name": "evaluate",
+      "qualified_name": "scripts.evaluate.evaluate",
+      "definition_index": 1,
+      "parent_qualified_name": "scripts.evaluate",
+      "evidence": {
+        "artifact_id": "ART-72effa77bf81",
+        "sha256": "51253a78f521d059f41c71120c103130d4212df61c5b9725c28a0dbdb88a46ba",
+        "path": "scripts/evaluate.py",
+        "line_start": 4,
+        "line_end": 5
+      }
+    },
+    {
+      "node_id": "CGN-bfbdef1d3efcc8b0",
+      "kind": "module",
+      "name": "scripts.prepare_data",
+      "qualified_name": "scripts.prepare_data",
+      "definition_index": 1,
+      "parent_qualified_name": null,
+      "evidence": {
+        "artifact_id": "ART-042054c79e1f",
+        "sha256": "5ec30d083a48e60c21baedf653f1f92789950991d6f55434b1a6e24b8f47d6bf",
+        "path": "scripts/prepare_data.py",
+        "line_start": 1,
+        "line_end": 7
+      }
+    },
+    {
+      "node_id": "CGN-e5221c4551310381",
+      "kind": "function",
+      "name": "train",
+      "qualified_name": "scripts.train.train",
+      "definition_index": 1,
+      "parent_qualified_name": "scripts.train",
+      "evidence": {
+        "artifact_id": "ART-0e048206896e",
+        "sha256": "53b13e3af8f764734b70514ea2976eada1be32b3500a8453a23aec76c0022d06",
+        "path": "scripts/train.py",
+        "line_start": 6,
+        "line_end": 7
+      }
+    }
+  ],
+  "edges": [
+    {
+      "edge_id": "CGE-065da9978d396c6b",
+      "kind": "CONTAINS",
+      "source_node_id": "CGN-bfbdef1d3efcc8b0",
+      "target_node_id": "CGN-2befa1f0ebb5294a",
+      "confidence": "STRUCTURAL",
+      "evidence": {
+        "artifact_id": "ART-042054c79e1f",
+        "sha256": "5ec30d083a48e60c21baedf653f1f92789950991d6f55434b1a6e24b8f47d6bf",
+        "path": "scripts/prepare_data.py",
+        "line_start": 6,
+        "line_end": 6
+      }
+    },
+    {
+      "edge_id": "CGE-18c498dc95970238",
+      "kind": "CONTAINS",
+      "source_node_id": "CGN-2b9956c90b3b528e",
+      "target_node_id": "CGN-15f14bbb6cab6fe2",
+      "confidence": "STRUCTURAL",
+      "evidence": {
+        "artifact_id": "ART-a2a9387d128d",
+        "sha256": "99019396cb1a3149a55aaf90ffdec62730f2f89a53ad03a1363d2a843915e919",
+        "path": "scripts/report.py",
+        "line_start": 4,
+        "line_end": 4
+      }
+    },
+    {
+      "edge_id": "CGE-8fd124f92f771037",
+      "kind": "CONTAINS",
+      "source_node_id": "CGN-5bdcd1115642971f",
+      "target_node_id": "CGN-bf22ad612fdd3d45",
+      "confidence": "STRUCTURAL",
+      "evidence": {
+        "artifact_id": "ART-72effa77bf81",
+        "sha256": "51253a78f521d059f41c71120c103130d4212df61c5b9725c28a0dbdb88a46ba",
+        "path": "scripts/evaluate.py",
+        "line_start": 4,
+        "line_end": 4
+      }
+    },
+    {
+      "edge_id": "CGE-e78709b28863c62d",
+      "kind": "CONTAINS",
+      "source_node_id": "CGN-416c3d43317beee2",
+      "target_node_id": "CGN-e5221c4551310381",
+      "confidence": "STRUCTURAL",
+      "evidence": {
+        "artifact_id": "ART-0e048206896e",
+        "sha256": "53b13e3af8f764734b70514ea2976eada1be32b3500a8453a23aec76c0022d06",
+        "path": "scripts/train.py",
+        "line_start": 6,
+        "line_end": 6
+      }
+    }
+  ],
+  "unresolved_calls": [
+    {
+      "source_node_id": "CGN-bf22ad612fdd3d45",
+      "expression": "NotImplementedError",
+      "reason": "NO_LOCAL_TARGET",
+      "confidence": "UNRESOLVED",
+      "evidence": {
+        "artifact_id": "ART-72effa77bf81",
+        "sha256": "51253a78f521d059f41c71120c103130d4212df61c5b9725c28a0dbdb88a46ba",
+        "path": "scripts/evaluate.py",
+        "line_start": 5,
+        "line_end": 5
+      }
+    },
+    {
+      "source_node_id": "CGN-2befa1f0ebb5294a",
+      "expression": "Path",
+      "reason": "NO_LOCAL_TARGET",
+      "confidence": "UNRESOLVED",
+      "evidence": {
+        "artifact_id": "ART-042054c79e1f",
+        "sha256": "5ec30d083a48e60c21baedf653f1f92789950991d6f55434b1a6e24b8f47d6bf",
+        "path": "scripts/prepare_data.py",
+        "line_start": 7,
+        "line_end": 7
+      }
+    },
+    {
+      "source_node_id": "CGN-15f14bbb6cab6fe2",
+      "expression": "NotImplementedError",
+      "reason": "NO_LOCAL_TARGET",
+      "confidence": "UNRESOLVED",
+      "evidence": {
+        "artifact_id": "ART-a2a9387d128d",
+        "sha256": "99019396cb1a3149a55aaf90ffdec62730f2f89a53ad03a1363d2a843915e919",
+        "path": "scripts/report.py",
+        "line_start": 5,
+        "line_end": 5
+      }
+    },
+    {
+      "source_node_id": "CGN-e5221c4551310381",
+      "expression": "NotImplementedError",
+      "reason": "NO_LOCAL_TARGET",
+      "confidence": "UNRESOLVED",
+      "evidence": {
+        "artifact_id": "ART-0e048206896e",
+        "sha256": "53b13e3af8f764734b70514ea2976eada1be32b3500a8453a23aec76c0022d06",
+        "path": "scripts/train.py",
+        "line_start": 7,
+        "line_end": 7
+      }
+    }
+  ],
+  "external_imports": [
+    {
+      "source_node_id": "CGN-bfbdef1d3efcc8b0",
+      "declared_target": "pathlib",
+      "confidence": "UNRESOLVED",
+      "evidence": {
+        "artifact_id": "ART-042054c79e1f",
+        "sha256": "5ec30d083a48e60c21baedf653f1f92789950991d6f55434b1a6e24b8f47d6bf",
+        "path": "scripts/prepare_data.py",
+        "line_start": 3,
+        "line_end": 3
+      }
+    }
+  ],
+  "ambiguous_symbols": [],
+  "parse_errors": [],
+  "skipped_files": [],
+  "fragments": [
+    {
+      "artifact_id": "ART-72effa77bf81",
+      "path": "scripts/evaluate.py",
+      "sha256": "51253a78f521d059f41c71120c103130d4212df61c5b9725c28a0dbdb88a46ba",
+      "module": "scripts.evaluate",
+      "nodes": [
+        {
+          "node_id": "CGN-5bdcd1115642971f",
+          "kind": "module",
+          "name": "scripts.evaluate",
+          "qualified_name": "scripts.evaluate",
+          "definition_index": 1,
+          "parent_qualified_name": null,
+          "evidence": {
+            "artifact_id": "ART-72effa77bf81",
+            "sha256": "51253a78f521d059f41c71120c103130d4212df61c5b9725c28a0dbdb88a46ba",
+            "path": "scripts/evaluate.py",
+            "line_start": 1,
+            "line_end": 5
+          }
+        },
+        {
+          "node_id": "CGN-bf22ad612fdd3d45",
+          "kind": "function",
+          "name": "evaluate",
+          "qualified_name": "scripts.evaluate.evaluate",
+          "definition_index": 1,
+          "parent_qualified_name": "scripts.evaluate",
+          "evidence": {
+            "artifact_id": "ART-72effa77bf81",
+            "sha256": "51253a78f521d059f41c71120c103130d4212df61c5b9725c28a0dbdb88a46ba",
+            "path": "scripts/evaluate.py",
+            "line_start": 4,
+            "line_end": 5
+          }
+        }
+      ],
+      "imports": [],
+      "calls": [
+        {
+          "owner": "scripts.evaluate.evaluate",
+          "expression": "NotImplementedError",
+          "line": 5,
+          "dynamic": false
+        }
+      ],
+      "bindings": {
+        "scripts.evaluate.evaluate": [
+          "checkpoint"
+        ]
+      },
+      "parse_error": null
+    },
+    {
+      "artifact_id": "ART-042054c79e1f",
+      "path": "scripts/prepare_data.py",
+      "sha256": "5ec30d083a48e60c21baedf653f1f92789950991d6f55434b1a6e24b8f47d6bf",
+      "module": "scripts.prepare_data",
+      "nodes": [
+        {
+          "node_id": "CGN-bfbdef1d3efcc8b0",
+          "kind": "module",
+          "name": "scripts.prepare_data",
+          "qualified_name": "scripts.prepare_data",
+          "definition_index": 1,
+          "parent_qualified_name": null,
+          "evidence": {
+            "artifact_id": "ART-042054c79e1f",
+            "sha256": "5ec30d083a48e60c21baedf653f1f92789950991d6f55434b1a6e24b8f47d6bf",
+            "path": "scripts/prepare_data.py",
+            "line_start": 1,
+            "line_end": 7
+          }
+        },
+        {
+          "node_id": "CGN-2befa1f0ebb5294a",
+          "kind": "function",
+          "name": "candidate_inputs",
+          "qualified_name": "scripts.prepare_data.candidate_inputs",
+          "definition_index": 1,
+          "parent_qualified_name": "scripts.prepare_data",
+          "evidence": {
+            "artifact_id": "ART-042054c79e1f",
+            "sha256": "5ec30d083a48e60c21baedf653f1f92789950991d6f55434b1a6e24b8f47d6bf",
+            "path": "scripts/prepare_data.py",
+            "line_start": 6,
+            "line_end": 7
+          }
+        }
+      ],
+      "imports": [
+        {
+          "owner": "scripts.prepare_data",
+          "local": "Path",
+          "target": "pathlib.Path",
+          "target_module": "pathlib",
+          "line": 3
+        }
+      ],
+      "calls": [
+        {
+          "owner": "scripts.prepare_data.candidate_inputs",
+          "expression": "Path",
+          "line": 7,
+          "dynamic": false
+        }
+      ],
+      "bindings": {
+        "scripts.prepare_data.candidate_inputs": []
+      },
+      "parse_error": null
+    },
+    {
+      "artifact_id": "ART-a2a9387d128d",
+      "path": "scripts/report.py",
+      "sha256": "99019396cb1a3149a55aaf90ffdec62730f2f89a53ad03a1363d2a843915e919",
+      "module": "scripts.report",
+      "nodes": [
+        {
+          "node_id": "CGN-2b9956c90b3b528e",
+          "kind": "module",
+          "name": "scripts.report",
+          "qualified_name": "scripts.report",
+          "definition_index": 1,
+          "parent_qualified_name": null,
+          "evidence": {
+            "artifact_id": "ART-a2a9387d128d",
+            "sha256": "99019396cb1a3149a55aaf90ffdec62730f2f89a53ad03a1363d2a843915e919",
+            "path": "scripts/report.py",
+            "line_start": 1,
+            "line_end": 5
+          }
+        },
+        {
+          "node_id": "CGN-15f14bbb6cab6fe2",
+          "kind": "function",
+          "name": "build_report",
+          "qualified_name": "scripts.report.build_report",
+          "definition_index": 1,
+          "parent_qualified_name": "scripts.report",
+          "evidence": {
+            "artifact_id": "ART-a2a9387d128d",
+            "sha256": "99019396cb1a3149a55aaf90ffdec62730f2f89a53ad03a1363d2a843915e919",
+            "path": "scripts/report.py",
+            "line_start": 4,
+            "line_end": 5
+          }
+        }
+      ],
+      "imports": [],
+      "calls": [
+        {
+          "owner": "scripts.report.build_report",
+          "expression": "NotImplementedError",
+          "line": 5,
+          "dynamic": false
+        }
+      ],
+      "bindings": {
+        "scripts.report.build_report": [
+          "results_dir"
+        ]
+      },
+      "parse_error": null
+    },
+    {
+      "artifact_id": "ART-0e048206896e",
+      "path": "scripts/train.py",
+      "sha256": "53b13e3af8f764734b70514ea2976eada1be32b3500a8453a23aec76c0022d06",
+      "module": "scripts.train",
+      "nodes": [
+        {
+          "node_id": "CGN-416c3d43317beee2",
+          "kind": "module",
+          "name": "scripts.train",
+          "qualified_name": "scripts.train",
+          "definition_index": 1,
+          "parent_qualified_name": null,
+          "evidence": {
+            "artifact_id": "ART-0e048206896e",
+            "sha256": "53b13e3af8f764734b70514ea2976eada1be32b3500a8453a23aec76c0022d06",
+            "path": "scripts/train.py",
+            "line_start": 1,
+            "line_end": 7
+          }
+        },
+        {
+          "node_id": "CGN-e5221c4551310381",
+          "kind": "function",
+          "name": "train",
+          "qualified_name": "scripts.train.train",
+          "definition_index": 1,
+          "parent_qualified_name": "scripts.train",
+          "evidence": {
+            "artifact_id": "ART-0e048206896e",
+            "sha256": "53b13e3af8f764734b70514ea2976eada1be32b3500a8453a23aec76c0022d06",
+            "path": "scripts/train.py",
+            "line_start": 6,
+            "line_end": 7
+          }
+        }
+      ],
+      "imports": [],
+      "calls": [
+        {
+          "owner": "scripts.train.train",
+          "expression": "NotImplementedError",
+          "line": 7,
+          "dynamic": false
+        }
+      ],
+      "bindings": {
+        "scripts.train.train": [
+          "config_path"
+        ]
+      },
+      "parse_error": null
+    }
+  ]
+}

@@ -2,6 +2,7 @@
 from __future__ import annotations
 
 import argparse
+import json
 from pathlib import Path
 
 import yaml
@@ -9,7 +10,8 @@ import yaml
 
 REQUIRED = {
     "project-manifest.yaml", "artifact-registry.yaml", "task-dag.yaml",
-    "open-questions.yaml", "review-session.yaml", "bootstrap.md", "import-summary.json", "import-report.html",
+    "code-graph.json", "open-questions.yaml", "review-session.yaml",
+    "knowledge-baseline.yaml", "bootstrap.md", "import-summary.json", "import-report.html",
 }
 
 
@@ -32,6 +34,58 @@ def main() -> int:
         if artifact.get("redacted") and artifact.get("sha256"):
             print(f"redacted artifact was hashed: {artifact.get('path')}")
             return 2
+    graph = json.loads((root / "code-graph.json").read_text(encoding="utf-8"))
+    if graph.get("status") != "DRAFT_HUMAN_REVIEW":
+        print("unsafe status in code-graph.json")
+        return 2
+    scope = graph.get("scope", {})
+    if scope.get("source_execution") is not False or scope.get("source_mutated") is not False:
+        print("unsafe code graph scope")
+        return 2
+    nodes = graph.get("nodes", [])
+    node_ids = {node.get("node_id") for node in nodes}
+    if None in node_ids:
+        print("code graph node without stable ID")
+        return 2
+    if len(node_ids) != len(nodes):
+        print("duplicate code graph node ID")
+        return 2
+    for node in graph.get("nodes", []):
+        evidence = node.get("evidence", {})
+        if not evidence.get("artifact_id") or not evidence.get("sha256"):
+            print(f"code graph node without snapshot evidence: {node.get('node_id')}")
+            return 2
+    for edge in graph.get("edges", []):
+        if edge.get("source_node_id") not in node_ids or edge.get("target_node_id") not in node_ids:
+            print(f"code graph edge references missing node: {edge.get('edge_id')}")
+            return 2
+        if edge.get("confidence") != "STRUCTURAL":
+            print(f"code graph edge has unsafe confidence: {edge.get('edge_id')}")
+            return 2
+    baseline = yaml.safe_load((root / "knowledge-baseline.yaml").read_text(encoding="utf-8"))
+    if baseline.get("status") != "DRAFT_HUMAN_REVIEW":
+        print("unsafe status in knowledge-baseline.yaml")
+        return 2
+    facts = baseline.get("facts", [])
+    fact_ids = {fact.get("fact_id") for fact in facts}
+    if None in fact_ids or len(fact_ids) != len(facts):
+        print("knowledge baseline has missing or duplicate fact IDs")
+        return 2
+    for fact in facts:
+        if (
+            fact.get("validity") in {"STALE", "UNVERIFIED"}
+            and not fact.get("requires_human_review")
+        ):
+            print(f"unsafe knowledge fact bypasses review: {fact.get('fact_id')}")
+            return 2
+        if fact.get("origin") == "HUMAN" and fact.get("validity") == "CURRENT":
+            evidence = fact.get("evidence", [])
+            if not evidence or any(
+                not item.get("artifact_id") or not item.get("sha256")
+                for item in evidence
+            ):
+                print(f"current human fact lacks snapshot evidence: {fact.get('fact_id')}")
+                return 2
     review = yaml.safe_load((root / "review-session.yaml").read_text(encoding="utf-8"))
     policy = review.get("interaction_policy", {})
     if not policy.get("one_question_at_a_time") or not policy.get("wait_for_human_answer"):

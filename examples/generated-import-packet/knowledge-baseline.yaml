@@ -1,0 +1,108 @@
+schema_version: '1.0'
+project_id: SYNTHETIC-RESPONSE-DEMO
+status: DRAFT_HUMAN_REVIEW
+baseline_id: KB-5d778866d40e889b
+baseline_digest: 940a10bb4d2d08be12ef8a0cd8bc82eef46b0c4f26fa4bedc64f05f7b6d9088d
+artifact_snapshot_digest: ad785da5430e24710695ea53aca4cad7bfcd07ece44fc044c3ea7fc43b632cb6
+previous_baseline_used: false
+warning: Only CURRENT facts may enter a context bundle. STALE and UNVERIFIED facts
+  require evidence refresh or human review.
+summary:
+  fact_count: 4
+  validity:
+    CURRENT: 4
+  invalidation_count: 0
+facts:
+- fact_id: KBF-075e7dedf7bb2e80
+  kind: task_candidate
+  statement: prepare may enter through scripts/prepare_data.py; this is a structural
+    candidate, not a confirmed workflow fact.
+  value:
+    task_id: IMPORT-PREPARE-042054c79e1f
+    kind: prepare
+    entrypoint: scripts/prepare_data.py
+    depends_on_candidates: []
+  topics:
+  - data
+  - prepare
+  - py
+  - scripts
+  - scripts/prepare_data.py
+  epistemic_status: INFERRED
+  validity: CURRENT
+  origin: IMPORTER
+  evidence:
+  - artifact_id: ART-042054c79e1f
+    path: scripts/prepare_data.py
+    sha256: 5ec30d083a48e60c21baedf653f1f92789950991d6f55434b1a6e24b8f47d6bf
+  requires_human_review: true
+- fact_id: KBF-8f7266292d2e51fe
+  kind: task_candidate
+  statement: report may enter through scripts/report.py; this is a structural candidate,
+    not a confirmed workflow fact.
+  value:
+    task_id: IMPORT-REPORT-a2a9387d128d
+    kind: report
+    entrypoint: scripts/report.py
+    depends_on_candidates:
+    - IMPORT-EVALUATE-72effa77bf81
+  topics:
+  - py
+  - report
+  - scripts
+  - scripts/report.py
+  epistemic_status: INFERRED
+  validity: CURRENT
+  origin: IMPORTER
+  evidence:
+  - artifact_id: ART-a2a9387d128d
+    path: scripts/report.py
+    sha256: 99019396cb1a3149a55aaf90ffdec62730f2f89a53ad03a1363d2a843915e919
+  requires_human_review: true
+- fact_id: KBF-d598bbf13cc2e283
+  kind: task_candidate
+  statement: train may enter through scripts/train.py; this is a structural candidate,
+    not a confirmed workflow fact.
+  value:
+    task_id: IMPORT-TRAIN-0e048206896e
+    kind: train
+    entrypoint: scripts/train.py
+    depends_on_candidates:
+    - IMPORT-PREPARE-042054c79e1f
+  topics:
+  - py
+  - scripts
+  - scripts/train.py
+  - train
+  epistemic_status: INFERRED
+  validity: CURRENT
+  origin: IMPORTER
+  evidence:
+  - artifact_id: ART-0e048206896e
+    path: scripts/train.py
+    sha256: 53b13e3af8f764734b70514ea2976eada1be32b3500a8453a23aec76c0022d06
+  requires_human_review: true
+- fact_id: KBF-fd4aa4a174f303b4
+  kind: task_candidate
+  statement: evaluate may enter through scripts/evaluate.py; this is a structural
+    candidate, not a confirmed workflow fact.
+  value:
+    task_id: IMPORT-EVALUATE-72effa77bf81
+    kind: evaluate
+    entrypoint: scripts/evaluate.py
+    depends_on_candidates:
+    - IMPORT-TRAIN-0e048206896e
+  topics:
+  - evaluate
+  - py
+  - scripts
+  - scripts/evaluate.py
+  epistemic_status: INFERRED
+  validity: CURRENT
+  origin: IMPORTER
+  evidence:
+  - artifact_id: ART-72effa77bf81
+    path: scripts/evaluate.py
+    sha256: 51253a78f521d059f41c71120c103130d4212df61c5b9725c28a0dbdb88a46ba
+  requires_human_review: true
+invalidations: []

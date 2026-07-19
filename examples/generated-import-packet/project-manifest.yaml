@@ -10,12 +10,12 @@ scanner_limits:
   max_text_bytes: 262144
   hash_max_bytes: 1048576
 git:
-  is_repository: false
-  root: null
-  commit: null
-  dirty: null
-  changed_path_count: 0
-  origin: null
+  is_repository: true
+  root: D:/蛋白设计/loop-importer
+  commit: 053ad4bd626b440dd7b7c6eb21eee96892d5b6c7
+  dirty: true
+  changed_path_count: 28
+  origin: https://github.com/emanuelmerino481/loop-importer.git
 summary:
   file_count: 14
   total_bytes: 2947
@@ -35,3 +35,21 @@ summary:
     metric: 4
     checkpoint: 3
     cuda: 1
+  code_graph:
+    python_file_count: 4
+    fragment_count: 4
+    node_count: 8
+    edge_count: 4
+    node_kinds:
+      function: 4
+      module: 4
+    edge_kinds:
+      CONTAINS: 4
+    parse_error_count: 0
+    unresolved_call_count: 4
+    ambiguous_symbol_count: 0
+  knowledge_baseline:
+    fact_count: 4
+    validity:
+      CURRENT: 4
+    invalidation_count: 0
