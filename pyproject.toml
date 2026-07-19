@@ -19,6 +19,7 @@ classifiers = [
 
 [project.scripts]
 loop-import = "loop_importer.cli:main"
+loop-context = "loop_importer.context_cli:main"
 
 [project.urls]
 Homepage = "https://github.com/emanuelmerino481/loop-importer"

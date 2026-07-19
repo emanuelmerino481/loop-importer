@@ -44,9 +44,68 @@
 
 - [`project-manifest.yaml`](examples/generated-import-packet/project-manifest.yaml)：扫描范围和项目概况；
 - [`artifact-registry.yaml`](examples/generated-import-packet/artifact-registry.yaml)：稳定证据 ID、受控 hash 和脱敏状态；
+- [`code-graph.json`](examples/generated-import-packet/code-graph.json)：Python 静态结构、可解析的结构边、未解析调用，以及增量 stale/removed ID；
+- `knowledge-baseline.yaml`：结构化事实、证据快照和 `CURRENT`/`STALE`/`UNVERIFIED` 有效性；
 - [`task-dag.yaml`](examples/generated-import-packet/task-dag.yaml)：低置信度任务与依赖候选；
 - [`review-session.yaml`](examples/generated-import-packet/review-session.yaml)：推荐答案、证据、人工裁决和问题依赖；
 - [`import-report.html`](examples/generated-import-packet/import-report.html)：中文人工审核页面。
+
+## 多项目 Demo 矩阵
+
+导入器已实际跑过 **6 个受控边界项目和 4 个锁定 commit 的公开 GitHub 仓库快照**。10 个导入包全部通过 `IMPORT_PACKET_VALID`，每次导入都报告 `source_mutated: false`。汇总数字覆盖全部 10 行，而不只是 4 个公开仓库：在各 Demo 的最终快照上，共观察到 **186 个文件、72 个 Python 文件、391 个代码节点和 593 条结构边**。公开仓库按精确 commit 下载，记录了压缩包 SHA-256，并确认导入前后整棵源码树 digest 一致。没有安装依赖，也没有执行仓库代码。
+
+| 公开仓库快照 | 文件 / Python | CodeGraph 节点 / 边 | 解析错误 | 未变化时第二次导入 |
+| --- | ---: | ---: | ---: | ---: |
+| [`karpathy/micrograd@c911406`](https://github.com/karpathy/micrograd/commit/c911406e5ace8742e5841a7e0df113ecb5d54685) | 13 / 5 | 45 / 58 | 0 | 0 解析 / 5 复用 |
+| [`karpathy/nanoGPT@3adf61e`](https://github.com/karpathy/nanoGPT/commit/3adf61e154c3fe3fca428ad6bc3818b27a3b8291) | 26 / 15 | 45 / 64 | 0 | 0 解析 / 15 复用 |
+| [`drivendataorg/cookiecutter-data-science@0f6b163`](https://github.com/drivendataorg/cookiecutter-data-science/commit/0f6b163cdbe3918a2c65ab57ad9fefda93976d9e) | 82 / 22 | 57 / 76 | 6 | 0 解析 / 22 复用 |
+| [`lucidrains/alphafold2@931466e`](https://github.com/lucidrains/alphafold2/commit/931466e487e1be87d1182b17ed4ecfac9e70948d) | 42 / 18 | 222 / 381 | 0 | 0 解析 / 18 复用 |
+
+Cookiecutter 的 6 个解析错误来自保留的 Jinja Python 模板；这里验证的是“解析错误会显式记录且不中断导入”，不是宣称所有文件都能得到干净 AST。这里的 `PASS` 表示该场景的所有断言通过且导入包被校验器接受；如果预期错误已被明确记录，仍可存在解析错误。在证据偏移和删除两行中，是测试运行器有意在两次导入之间修改夹具；`source_mutated: false` 表示导入器本身没有做这个修改。
+
+| 受控 Demo | 覆盖边界 | 实测结果 |
+| --- | --- | --- |
+| 不完整科研项目 | 冲突产物、疑似秘密文件、有界上下文 | 秘密已脱敏；选中 2 条事实、2 个代码节点和 1 条边 |
+| Python 包别名 | 相对导入、别名、类、方法和调用 | 成功解析 `IMPORTS` 和 `CALLS`；解析错误 0 |
+| 破损与动态 Python | 语法错误和 `factory()()` | 记录 1 个语法错误和动态调用，导入未中断 |
+| 秘密与大小边界 | `.env`、hash 上限、AST 大小上限 | 秘密值未泄露；超限任务事实标记为 `UNVERIFIED` |
+| 证据偏移 | 人工事实引用旧 artifact hash | 2 个图节点标记失效；过期人工事实被排除 |
+| 证据删除 | 两个 Python 文件中删除一个 | 报告移除 1 个 artifact 和 2 个图节点 |
+
+可审查[Demo 矩阵完整结果](benchmarks/demo-matrix-results.json)和[可复现运行器](benchmarks/run_demo_matrix.py)。这些是兼容性与安全边界演示，不代表导入器已证明候选工作流或科学结论正确。
+
+## 实测受控基准
+
+下面两张图由仓库内的基准 JSON 自动生成，不是手填的宣传数字。
+
+![上下文增长与证据偏移控制实测](docs/context-benchmark.svg)
+
+上下文选择存在真实的交叉成本：历史只有 1 轮时，由于携带证据元数据，bundle 比完整读取短 startup **大 106.38%**；历史积累到 5、10、20、40 轮时，实测 payload 分别减少 **50.76%、74.77%、87.23%、93.57%**。在受控失效夹具上，相同快照 bundle digest 20/20 一致，过期证据召回率 100%，错误失效 0，进入 bundle 的过期事实为 0。
+
+![独立摘要与递归摘要的语义保留实测](docs/semantic-benchmark.svg)
+
+在一个包含 11 个正式事实的受控夹具、110 词限制和相互隔离的 `gpt-5.6-sol` 临时会话下：
+
+- 对同一份完整原始历史做 5 次独立单轮总结，平均事实保留率为 94.55%，两个字段出现跨会话选择分歧；结构化当前事实为 100%，字段分歧为 0；
+- 连续做 10 轮递归摘要后，原始摘要最终保留 81.82%，并丢失 `formal_seeds` 和 `gpu_budget`；结构化序列保持 100%，没有发生事实回退。
+
+这只是一个合成夹具和一个当前配置模型下的证据，不代表普遍模型质量或生产 token 成本。上下文成本采用规范化 UTF-8 payload 字节，而不是模型 token。可审查[上下文结果](benchmarks/context-benchmark-results.json)、[语义结果](benchmarks/semantic-benchmark-results.json)、[金标准与同义规则](benchmarks/semantic-fixture.json)、[原始模型输出](benchmarks/semantic-runs/)和[基准方法](benchmarks/README.md)。
+
+## 实现校验
+
+当前实现还通过了自动化样例、仓库内合成 Demo，以及对本仓库自身的只读导入验证。
+
+| 验证项 | 结果 |
+| --- | --- |
+| 自动化测试 | **28/28 通过** |
+| 合成 Demo 导入包 | **`IMPORT_PACKET_VALID`** |
+| 多项目 Demo 矩阵 | **10/10 个导入包有效；4 个锁定 commit 的公开仓库** |
+| 本仓库自导入 | **19 个 Python 文件 → 188 个节点、418 条结构边** |
+| 未变化时第二次导入 | **0 个文件重新解析、复用 19 个图分片** |
+
+可查看 [CodeGraph 测试](tests/test_codegraph.py)、[上下文测试](tests/test_context.py)、[导入包校验器](skills/loop-importer/scripts/validate_import.py)和[生成的 Demo 图](examples/generated-import-packet/code-graph.json)复核证据。
+
+这些能力只是 [Issue #2](https://github.com/emanuelmerino481/loop-importer/issues/2) 与 [Issue #3](https://github.com/emanuelmerino481/loop-importer/issues/3) 的部分基础实现，并不代表问题已经关闭。目前证据有效性仍以整文件 hash 为主，上下文选择仍是词法检索；值级 locator、持久化人工裁决事件、冲突传播和交接总结仍待实现。
 
 ## 快速开始
 
@@ -61,6 +120,10 @@ loop-import /path/to/existing-project \
 
 python skills/loop-importer/scripts/validate_import.py \
   /path/to/imports/MY-PROJECT
+
+loop-context /path/to/imports/MY-PROJECT \
+  --query "训练入口和主指标" \
+  --output /path/to/context-bundle.json
 ```
 
 ## 人工审核方式
@@ -72,6 +135,8 @@ python skills/loop-importer/scripts/validate_import.py \
 - 不执行或修改源项目代码；
 - 不跟随符号链接，不遍历 Git、虚拟环境、缓存、WandB 或 MLflow；
 - 不读取或 hash 疑似秘密文件；
+- 只用 Python 标准库 AST 建图，不 import 或执行源项目模块；
+- 仅当路径、artifact ID 和 SHA-256 都未变化时复用图分片；
 - 侦察阶段不 hash 大数据和 checkpoint；
 - 清除 HTTP Git remote 中的账号、密码和 query；
 - 拒绝把导入结果写进源项目内部。

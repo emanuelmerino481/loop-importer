@@ -1,0 +1,8 @@
+{
+  "codex_cli_version": "0.144.5",
+  "model": "gpt-5.6-sol",
+  "session_mode": "isolated ephemeral",
+  "independent_runs_per_input_mode": 5,
+  "recursive_rounds_per_input_mode": 10,
+  "note": "Model value was read from the active Codex configuration used for these runs."
+}

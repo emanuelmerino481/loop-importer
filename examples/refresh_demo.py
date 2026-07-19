@@ -27,12 +27,28 @@ def _portable_text(path: Path, private_source: Path) -> None:
     path.write_text(text, encoding="utf-8", newline="\n")
 
 
+def _normalize_fixture_line_endings(root: Path) -> None:
+    """Keep committed demo hashes identical on Windows, macOS, and Linux."""
+    for path in sorted(item for item in root.rglob("*") if item.is_file()):
+        data = path.read_bytes()
+        if b"\0" in data:
+            continue
+        normalized = data.replace(b"\r\n", b"\n").replace(b"\r", b"\n")
+        if normalized != data:
+            path.write_bytes(normalized)
+
+
 def main() -> int:
     if OUTPUT.exists():
         shutil.rmtree(OUTPUT)
-    with tempfile.TemporaryDirectory(prefix="research-import-demo-") as temp:
+    # Keep the copied fixture outside this repository so Git discovery is
+    # deterministic on local machines and CI runners.
+    with tempfile.TemporaryDirectory(
+        prefix="research-import-demo-", dir=ROOT.parent
+    ) as temp:
         source = Path(temp) / "incomplete-research-project"
         shutil.copytree(FIXTURE, source)
+        _normalize_fixture_line_endings(source)
         import_project(source, OUTPUT, ImportOptions(project_id="SYNTHETIC-RESPONSE-DEMO"))
         for path in OUTPUT.iterdir():
             if path.suffix in {".yaml", ".json", ".md", ".html"}:

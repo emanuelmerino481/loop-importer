@@ -1,0 +1,75 @@
+{
+  "schema_version": "1.0",
+  "benchmark": "controlled-synthetic-context-growth",
+  "measurement_unit": "canonical UTF-8 payload bytes; not model tokens",
+  "query": "confirmed train entrypoint primary metric dataset seeds",
+  "history_notes_added_per_round": 6,
+  "context_cost": [
+    {
+      "history_rounds": 1,
+      "full_startup_bytes": 1286,
+      "selected_bundle_bytes": 2654,
+      "context_reduction_percent": -106.38,
+      "selected_fact_count": 4,
+      "selected_code_node_count": 2,
+      "bundle_digest": "3032a33ce487f9833dfd890f763b35f71c5326da6a0ca98e79ac03ffa9701ef0"
+    },
+    {
+      "history_rounds": 5,
+      "full_startup_bytes": 5390,
+      "selected_bundle_bytes": 2654,
+      "context_reduction_percent": 50.76,
+      "selected_fact_count": 4,
+      "selected_code_node_count": 2,
+      "bundle_digest": "31e177e5c06639d13dc2457f1efc5e2664e0b12cf8d0b1d98d870028c7904ec3"
+    },
+    {
+      "history_rounds": 10,
+      "full_startup_bytes": 10520,
+      "selected_bundle_bytes": 2654,
+      "context_reduction_percent": 74.77,
+      "selected_fact_count": 4,
+      "selected_code_node_count": 2,
+      "bundle_digest": "4517a7a40657fb10b7cfedad87f1d6d9dcc5fdaeeb627c26add41b2a44e08ee5"
+    },
+    {
+      "history_rounds": 20,
+      "full_startup_bytes": 20780,
+      "selected_bundle_bytes": 2654,
+      "context_reduction_percent": 87.23,
+      "selected_fact_count": 4,
+      "selected_code_node_count": 2,
+      "bundle_digest": "d57f7e1cb714a6707d8f01600ff52a0687797ab1a3de3906e26fdd42eb4ab7d2"
+    },
+    {
+      "history_rounds": 40,
+      "full_startup_bytes": 41300,
+      "selected_bundle_bytes": 2654,
+      "context_reduction_percent": 93.57,
+      "selected_fact_count": 4,
+      "selected_code_node_count": 2,
+      "bundle_digest": "aaa05722d816de4ece329a7ba594d08e37d5cd7908c846e07854313cc11ccf16"
+    }
+  ],
+  "sampled_rounds_cumulative": {
+    "full_startup_bytes": 79276,
+    "selected_bundle_bytes": 13270,
+    "reduction_percent": 83.26
+  },
+  "consistency": {
+    "same_snapshot_runs": 20,
+    "same_snapshot_digest_matches": 20,
+    "stale_expected": [
+      "FACT-OLD",
+      "FACT-TRAIN"
+    ],
+    "stale_detected": [
+      "FACT-OLD",
+      "FACT-TRAIN"
+    ],
+    "stale_detection_recall_percent": 100.0,
+    "false_stale_count": 0,
+    "stale_fact_leakage_count": 0
+  },
+  "result_digest": "8b05fa9491651cf829fa3043250ad1be618343550bbafbed73a71d25c5540b78"
+}

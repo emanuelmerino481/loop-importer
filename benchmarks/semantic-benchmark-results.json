@@ -1,0 +1,1035 @@
+{
+  "schema_version": "1.0",
+  "benchmark": "controlled-semantic-summary-drift",
+  "runner": {
+    "codex_cli_version": "0.144.5",
+    "model": "gpt-5.6-sol",
+    "session_mode": "isolated ephemeral",
+    "independent_runs_per_input_mode": 5,
+    "recursive_rounds_per_input_mode": 10,
+    "note": "Model value was read from the active Codex configuration used for these runs."
+  },
+  "summary_word_limit": 110,
+  "scoring": "Controlled semantic-alias retention and evidence-ID coverage for retained facts; no LLM judge is used.",
+  "independent_raw": {
+    "run_count": 5,
+    "mean_fact_recall_percent": 94.55,
+    "min_fact_recall_percent": 90.91,
+    "mean_evidence_coverage_percent": 94.55,
+    "mean_pairwise_retention_jaccard": 0.9091,
+    "cross_run_disagreement_fields": [
+      "statistical_unit",
+      "stop_condition"
+    ],
+    "distinct_summary_count": 5,
+    "mean_word_count": 91.8,
+    "word_limit_violation_count": 0,
+    "rejected_alternative_mention_count": 29,
+    "runs": [
+      {
+        "run": "run-01.json",
+        "active_fact_count": 11,
+        "retained_fact_ids": [
+          "baseline",
+          "dataset",
+          "dataset_snapshot",
+          "formal_seeds",
+          "gpu_budget",
+          "non_goal",
+          "primary_goal",
+          "primary_metric",
+          "protected_path",
+          "statistical_unit",
+          "stop_condition"
+        ],
+        "fact_recall_percent": 100.0,
+        "cited_fact_ids": [
+          "baseline",
+          "dataset",
+          "dataset_snapshot",
+          "formal_seeds",
+          "gpu_budget",
+          "non_goal",
+          "primary_goal",
+          "primary_metric",
+          "protected_path",
+          "statistical_unit",
+          "stop_condition"
+        ],
+        "evidence_id_coverage_percent": 100.0,
+        "rejected_alternative_mentions": [
+          "80 GPU-hours",
+          "8xH100",
+          "ESM2-MLP",
+          "EnzymeBench v2",
+          "micro F1",
+          "seed 13"
+        ],
+        "word_count": 92
+      },
+      {
+        "run": "run-02.json",
+        "active_fact_count": 11,
+        "retained_fact_ids": [
+          "baseline",
+          "dataset",
+          "dataset_snapshot",
+          "formal_seeds",
+          "gpu_budget",
+          "non_goal",
+          "primary_goal",
+          "primary_metric",
+          "protected_path",
+          "stop_condition"
+        ],
+        "fact_recall_percent": 90.91,
+        "cited_fact_ids": [
+          "baseline",
+          "dataset",
+          "dataset_snapshot",
+          "formal_seeds",
+          "gpu_budget",
+          "non_goal",
+          "primary_goal",
+          "primary_metric",
+          "protected_path",
+          "stop_condition"
+        ],
+        "evidence_id_coverage_percent": 90.91,
+        "rejected_alternative_mentions": [
+          "80 GPU-hours",
+          "8xH100",
+          "ESM2-MLP",
+          "EnzymeBench v2",
+          "seed 13"
+        ],
+        "word_count": 89
+      },
+      {
+        "run": "run-03.json",
+        "active_fact_count": 11,
+        "retained_fact_ids": [
+          "baseline",
+          "dataset",
+          "dataset_snapshot",
+          "formal_seeds",
+          "gpu_budget",
+          "non_goal",
+          "primary_goal",
+          "primary_metric",
+          "protected_path",
+          "statistical_unit",
+          "stop_condition"
+        ],
+        "fact_recall_percent": 100.0,
+        "cited_fact_ids": [
+          "baseline",
+          "dataset",
+          "dataset_snapshot",
+          "formal_seeds",
+          "gpu_budget",
+          "non_goal",
+          "primary_goal",
+          "primary_metric",
+          "protected_path",
+          "statistical_unit",
+          "stop_condition"
+        ],
+        "evidence_id_coverage_percent": 100.0,
+        "rejected_alternative_mentions": [
+          "80 GPU-hours",
+          "8xH100",
+          "ESM2-MLP",
+          "EnzymeBench v2",
+          "micro F1",
+          "seed 13"
+        ],
+        "word_count": 92
+      },
+      {
+        "run": "run-04.json",
+        "active_fact_count": 11,
+        "retained_fact_ids": [
+          "baseline",
+          "dataset",
+          "dataset_snapshot",
+          "formal_seeds",
+          "gpu_budget",
+          "non_goal",
+          "primary_goal",
+          "primary_metric",
+          "protected_path",
+          "statistical_unit"
+        ],
+        "fact_recall_percent": 90.91,
+        "cited_fact_ids": [
+          "baseline",
+          "dataset",
+          "dataset_snapshot",
+          "formal_seeds",
+          "gpu_budget",
+          "non_goal",
+          "primary_goal",
+          "primary_metric",
+          "protected_path",
+          "statistical_unit"
+        ],
+        "evidence_id_coverage_percent": 90.91,
+        "rejected_alternative_mentions": [
+          "80 GPU-hours",
+          "8xH100",
+          "ESM2-MLP",
+          "EnzymeBench v2",
+          "micro F1",
+          "seed 13"
+        ],
+        "word_count": 97
+      },
+      {
+        "run": "run-05.json",
+        "active_fact_count": 11,
+        "retained_fact_ids": [
+          "baseline",
+          "dataset",
+          "dataset_snapshot",
+          "formal_seeds",
+          "gpu_budget",
+          "non_goal",
+          "primary_goal",
+          "primary_metric",
+          "protected_path",
+          "statistical_unit"
+        ],
+        "fact_recall_percent": 90.91,
+        "cited_fact_ids": [
+          "baseline",
+          "dataset",
+          "dataset_snapshot",
+          "formal_seeds",
+          "gpu_budget",
+          "non_goal",
+          "primary_goal",
+          "primary_metric",
+          "protected_path",
+          "statistical_unit"
+        ],
+        "evidence_id_coverage_percent": 90.91,
+        "rejected_alternative_mentions": [
+          "80 GPU-hours",
+          "8xH100",
+          "ESM2-MLP",
+          "EnzymeBench v2",
+          "micro F1",
+          "seed 13"
+        ],
+        "word_count": 89
+      }
+    ]
+  },
+  "independent_structured": {
+    "run_count": 5,
+    "mean_fact_recall_percent": 100.0,
+    "min_fact_recall_percent": 100.0,
+    "mean_evidence_coverage_percent": 100.0,
+    "mean_pairwise_retention_jaccard": 1.0,
+    "cross_run_disagreement_fields": [],
+    "distinct_summary_count": 5,
+    "mean_word_count": 74,
+    "word_limit_violation_count": 0,
+    "rejected_alternative_mention_count": 0,
+    "runs": [
+      {
+        "run": "run-01.json",
+        "active_fact_count": 11,
+        "retained_fact_ids": [
+          "baseline",
+          "dataset",
+          "dataset_snapshot",
+          "formal_seeds",
+          "gpu_budget",
+          "non_goal",
+          "primary_goal",
+          "primary_metric",
+          "protected_path",
+          "statistical_unit",
+          "stop_condition"
+        ],
+        "fact_recall_percent": 100.0,
+        "cited_fact_ids": [
+          "baseline",
+          "dataset",
+          "dataset_snapshot",
+          "formal_seeds",
+          "gpu_budget",
+          "non_goal",
+          "primary_goal",
+          "primary_metric",
+          "protected_path",
+          "statistical_unit",
+          "stop_condition"
+        ],
+        "evidence_id_coverage_percent": 100.0,
+        "rejected_alternative_mentions": [],
+        "word_count": 81
+      },
+      {
+        "run": "run-02.json",
+        "active_fact_count": 11,
+        "retained_fact_ids": [
+          "baseline",
+          "dataset",
+          "dataset_snapshot",
+          "formal_seeds",
+          "gpu_budget",
+          "non_goal",
+          "primary_goal",
+          "primary_metric",
+          "protected_path",
+          "statistical_unit",
+          "stop_condition"
+        ],
+        "fact_recall_percent": 100.0,
+        "cited_fact_ids": [
+          "baseline",
+          "dataset",
+          "dataset_snapshot",
+          "formal_seeds",
+          "gpu_budget",
+          "non_goal",
+          "primary_goal",
+          "primary_metric",
+          "protected_path",
+          "statistical_unit",
+          "stop_condition"
+        ],
+        "evidence_id_coverage_percent": 100.0,
+        "rejected_alternative_mentions": [],
+        "word_count": 74
+      },
+      {
+        "run": "run-03.json",
+        "active_fact_count": 11,
+        "retained_fact_ids": [
+          "baseline",
+          "dataset",
+          "dataset_snapshot",
+          "formal_seeds",
+          "gpu_budget",
+          "non_goal",
+          "primary_goal",
+          "primary_metric",
+          "protected_path",
+          "statistical_unit",
+          "stop_condition"
+        ],
+        "fact_recall_percent": 100.0,
+        "cited_fact_ids": [
+          "baseline",
+          "dataset",
+          "dataset_snapshot",
+          "formal_seeds",
+          "gpu_budget",
+          "non_goal",
+          "primary_goal",
+          "primary_metric",
+          "protected_path",
+          "statistical_unit",
+          "stop_condition"
+        ],
+        "evidence_id_coverage_percent": 100.0,
+        "rejected_alternative_mentions": [],
+        "word_count": 76
+      },
+      {
+        "run": "run-04.json",
+        "active_fact_count": 11,
+        "retained_fact_ids": [
+          "baseline",
+          "dataset",
+          "dataset_snapshot",
+          "formal_seeds",
+          "gpu_budget",
+          "non_goal",
+          "primary_goal",
+          "primary_metric",
+          "protected_path",
+          "statistical_unit",
+          "stop_condition"
+        ],
+        "fact_recall_percent": 100.0,
+        "cited_fact_ids": [
+          "baseline",
+          "dataset",
+          "dataset_snapshot",
+          "formal_seeds",
+          "gpu_budget",
+          "non_goal",
+          "primary_goal",
+          "primary_metric",
+          "protected_path",
+          "statistical_unit",
+          "stop_condition"
+        ],
+        "evidence_id_coverage_percent": 100.0,
+        "rejected_alternative_mentions": [],
+        "word_count": 60
+      },
+      {
+        "run": "run-05.json",
+        "active_fact_count": 11,
+        "retained_fact_ids": [
+          "baseline",
+          "dataset",
+          "dataset_snapshot",
+          "formal_seeds",
+          "gpu_budget",
+          "non_goal",
+          "primary_goal",
+          "primary_metric",
+          "protected_path",
+          "statistical_unit",
+          "stop_condition"
+        ],
+        "fact_recall_percent": 100.0,
+        "cited_fact_ids": [
+          "baseline",
+          "dataset",
+          "dataset_snapshot",
+          "formal_seeds",
+          "gpu_budget",
+          "non_goal",
+          "primary_goal",
+          "primary_metric",
+          "protected_path",
+          "statistical_unit",
+          "stop_condition"
+        ],
+        "evidence_id_coverage_percent": 100.0,
+        "rejected_alternative_mentions": [],
+        "word_count": 79
+      }
+    ]
+  },
+  "recursive_raw": {
+    "round_count": 10,
+    "final_fact_recall_percent": 81.82,
+    "final_evidence_coverage_percent": 81.82,
+    "retention_regressions": [
+      {
+        "round": 7,
+        "lost_fact_ids": [
+          "formal_seeds",
+          "gpu_budget"
+        ]
+      }
+    ],
+    "word_limit_violation_count": 3,
+    "rejected_alternative_mention_count": 33,
+    "rounds": [
+      {
+        "round": 1,
+        "active_fact_count": 2,
+        "retained_fact_ids": [
+          "non_goal",
+          "primary_goal"
+        ],
+        "fact_recall_percent": 100.0,
+        "cited_fact_ids": [
+          "non_goal",
+          "primary_goal"
+        ],
+        "evidence_id_coverage_percent": 100.0,
+        "rejected_alternative_mentions": [],
+        "word_count": 35
+      },
+      {
+        "round": 2,
+        "active_fact_count": 4,
+        "retained_fact_ids": [
+          "dataset",
+          "dataset_snapshot",
+          "non_goal",
+          "primary_goal"
+        ],
+        "fact_recall_percent": 100.0,
+        "cited_fact_ids": [
+          "dataset",
+          "dataset_snapshot",
+          "non_goal",
+          "primary_goal"
+        ],
+        "evidence_id_coverage_percent": 100.0,
+        "rejected_alternative_mentions": [
+          "EnzymeBench v2"
+        ],
+        "word_count": 71
+      },
+      {
+        "round": 3,
+        "active_fact_count": 6,
+        "retained_fact_ids": [
+          "dataset",
+          "dataset_snapshot",
+          "non_goal",
+          "primary_goal",
+          "primary_metric",
+          "statistical_unit"
+        ],
+        "fact_recall_percent": 100.0,
+        "cited_fact_ids": [
+          "dataset",
+          "dataset_snapshot",
+          "non_goal",
+          "primary_goal",
+          "primary_metric",
+          "statistical_unit"
+        ],
+        "evidence_id_coverage_percent": 100.0,
+        "rejected_alternative_mentions": [
+          "EnzymeBench v2",
+          "micro F1"
+        ],
+        "word_count": 106
+      },
+      {
+        "round": 4,
+        "active_fact_count": 7,
+        "retained_fact_ids": [
+          "dataset",
+          "dataset_snapshot",
+          "formal_seeds",
+          "non_goal",
+          "primary_goal",
+          "primary_metric",
+          "statistical_unit"
+        ],
+        "fact_recall_percent": 100.0,
+        "cited_fact_ids": [
+          "dataset",
+          "dataset_snapshot",
+          "formal_seeds",
+          "non_goal",
+          "primary_goal",
+          "primary_metric",
+          "statistical_unit"
+        ],
+        "evidence_id_coverage_percent": 100.0,
+        "rejected_alternative_mentions": [
+          "EnzymeBench v2",
+          "micro F1",
+          "seed 13"
+        ],
+        "word_count": 109
+      },
+      {
+        "round": 5,
+        "active_fact_count": 8,
+        "retained_fact_ids": [
+          "baseline",
+          "dataset",
+          "dataset_snapshot",
+          "formal_seeds",
+          "non_goal",
+          "primary_goal",
+          "primary_metric",
+          "statistical_unit"
+        ],
+        "fact_recall_percent": 100.0,
+        "cited_fact_ids": [
+          "baseline",
+          "dataset",
+          "dataset_snapshot",
+          "formal_seeds",
+          "non_goal",
+          "primary_goal",
+          "primary_metric",
+          "statistical_unit"
+        ],
+        "evidence_id_coverage_percent": 100.0,
+        "rejected_alternative_mentions": [
+          "ESM2-MLP",
+          "EnzymeBench v2",
+          "micro F1",
+          "seed 13"
+        ],
+        "word_count": 112
+      },
+      {
+        "round": 6,
+        "active_fact_count": 11,
+        "retained_fact_ids": [
+          "baseline",
+          "dataset",
+          "dataset_snapshot",
+          "formal_seeds",
+          "gpu_budget",
+          "non_goal",
+          "primary_goal",
+          "primary_metric",
+          "protected_path",
+          "statistical_unit",
+          "stop_condition"
+        ],
+        "fact_recall_percent": 100.0,
+        "cited_fact_ids": [
+          "baseline",
+          "dataset",
+          "dataset_snapshot",
+          "formal_seeds",
+          "gpu_budget",
+          "non_goal",
+          "primary_goal",
+          "primary_metric",
+          "protected_path",
+          "statistical_unit",
+          "stop_condition"
+        ],
+        "evidence_id_coverage_percent": 100.0,
+        "rejected_alternative_mentions": [
+          "80 GPU-hours",
+          "8xH100",
+          "ESM2-MLP",
+          "EnzymeBench v2",
+          "micro F1"
+        ],
+        "word_count": 115
+      },
+      {
+        "round": 7,
+        "active_fact_count": 11,
+        "retained_fact_ids": [
+          "baseline",
+          "dataset",
+          "dataset_snapshot",
+          "non_goal",
+          "primary_goal",
+          "primary_metric",
+          "protected_path",
+          "statistical_unit",
+          "stop_condition"
+        ],
+        "fact_recall_percent": 81.82,
+        "cited_fact_ids": [
+          "baseline",
+          "dataset",
+          "dataset_snapshot",
+          "non_goal",
+          "primary_goal",
+          "primary_metric",
+          "protected_path",
+          "statistical_unit",
+          "stop_condition"
+        ],
+        "evidence_id_coverage_percent": 81.82,
+        "rejected_alternative_mentions": [
+          "80 GPU-hours",
+          "8xH100",
+          "EnzymeBench v2",
+          "micro F1"
+        ],
+        "word_count": 111
+      },
+      {
+        "round": 8,
+        "active_fact_count": 11,
+        "retained_fact_ids": [
+          "baseline",
+          "dataset",
+          "dataset_snapshot",
+          "non_goal",
+          "primary_goal",
+          "primary_metric",
+          "protected_path",
+          "statistical_unit",
+          "stop_condition"
+        ],
+        "fact_recall_percent": 81.82,
+        "cited_fact_ids": [
+          "baseline",
+          "dataset",
+          "dataset_snapshot",
+          "non_goal",
+          "primary_goal",
+          "primary_metric",
+          "protected_path",
+          "statistical_unit",
+          "stop_condition"
+        ],
+        "evidence_id_coverage_percent": 81.82,
+        "rejected_alternative_mentions": [
+          "80 GPU-hours",
+          "8xH100",
+          "ESM2-MLP",
+          "EnzymeBench v2",
+          "micro F1"
+        ],
+        "word_count": 107
+      },
+      {
+        "round": 9,
+        "active_fact_count": 11,
+        "retained_fact_ids": [
+          "baseline",
+          "dataset",
+          "dataset_snapshot",
+          "non_goal",
+          "primary_goal",
+          "primary_metric",
+          "protected_path",
+          "statistical_unit",
+          "stop_condition"
+        ],
+        "fact_recall_percent": 81.82,
+        "cited_fact_ids": [
+          "baseline",
+          "dataset",
+          "dataset_snapshot",
+          "non_goal",
+          "primary_goal",
+          "primary_metric",
+          "protected_path",
+          "statistical_unit",
+          "stop_condition"
+        ],
+        "evidence_id_coverage_percent": 81.82,
+        "rejected_alternative_mentions": [
+          "80 GPU-hours",
+          "8xH100",
+          "ESM2-MLP",
+          "EnzymeBench v2",
+          "micro F1"
+        ],
+        "word_count": 103
+      },
+      {
+        "round": 10,
+        "active_fact_count": 11,
+        "retained_fact_ids": [
+          "baseline",
+          "dataset",
+          "dataset_snapshot",
+          "non_goal",
+          "primary_goal",
+          "primary_metric",
+          "protected_path",
+          "statistical_unit",
+          "stop_condition"
+        ],
+        "fact_recall_percent": 81.82,
+        "cited_fact_ids": [
+          "baseline",
+          "dataset",
+          "dataset_snapshot",
+          "non_goal",
+          "primary_goal",
+          "primary_metric",
+          "protected_path",
+          "statistical_unit",
+          "stop_condition"
+        ],
+        "evidence_id_coverage_percent": 81.82,
+        "rejected_alternative_mentions": [
+          "80 GPU-hours",
+          "8xH100",
+          "ESM2-MLP",
+          "micro F1"
+        ],
+        "word_count": 102
+      }
+    ]
+  },
+  "recursive_structured": {
+    "round_count": 10,
+    "final_fact_recall_percent": 100.0,
+    "final_evidence_coverage_percent": 100.0,
+    "retention_regressions": [],
+    "word_limit_violation_count": 0,
+    "rejected_alternative_mention_count": 0,
+    "rounds": [
+      {
+        "round": 1,
+        "active_fact_count": 2,
+        "retained_fact_ids": [
+          "non_goal",
+          "primary_goal"
+        ],
+        "fact_recall_percent": 100.0,
+        "cited_fact_ids": [
+          "non_goal",
+          "primary_goal"
+        ],
+        "evidence_id_coverage_percent": 100.0,
+        "rejected_alternative_mentions": [],
+        "word_count": 19
+      },
+      {
+        "round": 2,
+        "active_fact_count": 4,
+        "retained_fact_ids": [
+          "dataset",
+          "dataset_snapshot",
+          "non_goal",
+          "primary_goal"
+        ],
+        "fact_recall_percent": 100.0,
+        "cited_fact_ids": [
+          "dataset",
+          "dataset_snapshot",
+          "non_goal",
+          "primary_goal"
+        ],
+        "evidence_id_coverage_percent": 100.0,
+        "rejected_alternative_mentions": [],
+        "word_count": 25
+      },
+      {
+        "round": 3,
+        "active_fact_count": 6,
+        "retained_fact_ids": [
+          "dataset",
+          "dataset_snapshot",
+          "non_goal",
+          "primary_goal",
+          "primary_metric",
+          "statistical_unit"
+        ],
+        "fact_recall_percent": 100.0,
+        "cited_fact_ids": [
+          "dataset",
+          "dataset_snapshot",
+          "non_goal",
+          "primary_goal",
+          "primary_metric",
+          "statistical_unit"
+        ],
+        "evidence_id_coverage_percent": 100.0,
+        "rejected_alternative_mentions": [],
+        "word_count": 34
+      },
+      {
+        "round": 4,
+        "active_fact_count": 7,
+        "retained_fact_ids": [
+          "dataset",
+          "dataset_snapshot",
+          "formal_seeds",
+          "non_goal",
+          "primary_goal",
+          "primary_metric",
+          "statistical_unit"
+        ],
+        "fact_recall_percent": 100.0,
+        "cited_fact_ids": [
+          "dataset",
+          "dataset_snapshot",
+          "formal_seeds",
+          "non_goal",
+          "primary_goal",
+          "primary_metric",
+          "statistical_unit"
+        ],
+        "evidence_id_coverage_percent": 100.0,
+        "rejected_alternative_mentions": [],
+        "word_count": 40
+      },
+      {
+        "round": 5,
+        "active_fact_count": 8,
+        "retained_fact_ids": [
+          "baseline",
+          "dataset",
+          "dataset_snapshot",
+          "formal_seeds",
+          "non_goal",
+          "primary_goal",
+          "primary_metric",
+          "statistical_unit"
+        ],
+        "fact_recall_percent": 100.0,
+        "cited_fact_ids": [
+          "baseline",
+          "dataset",
+          "dataset_snapshot",
+          "formal_seeds",
+          "non_goal",
+          "primary_goal",
+          "primary_metric",
+          "statistical_unit"
+        ],
+        "evidence_id_coverage_percent": 100.0,
+        "rejected_alternative_mentions": [],
+        "word_count": 46
+      },
+      {
+        "round": 6,
+        "active_fact_count": 11,
+        "retained_fact_ids": [
+          "baseline",
+          "dataset",
+          "dataset_snapshot",
+          "formal_seeds",
+          "gpu_budget",
+          "non_goal",
+          "primary_goal",
+          "primary_metric",
+          "protected_path",
+          "statistical_unit",
+          "stop_condition"
+        ],
+        "fact_recall_percent": 100.0,
+        "cited_fact_ids": [
+          "baseline",
+          "dataset",
+          "dataset_snapshot",
+          "formal_seeds",
+          "gpu_budget",
+          "non_goal",
+          "primary_goal",
+          "primary_metric",
+          "protected_path",
+          "statistical_unit",
+          "stop_condition"
+        ],
+        "evidence_id_coverage_percent": 100.0,
+        "rejected_alternative_mentions": [],
+        "word_count": 66
+      },
+      {
+        "round": 7,
+        "active_fact_count": 11,
+        "retained_fact_ids": [
+          "baseline",
+          "dataset",
+          "dataset_snapshot",
+          "formal_seeds",
+          "gpu_budget",
+          "non_goal",
+          "primary_goal",
+          "primary_metric",
+          "protected_path",
+          "statistical_unit",
+          "stop_condition"
+        ],
+        "fact_recall_percent": 100.0,
+        "cited_fact_ids": [
+          "baseline",
+          "dataset",
+          "dataset_snapshot",
+          "formal_seeds",
+          "gpu_budget",
+          "non_goal",
+          "primary_goal",
+          "primary_metric",
+          "protected_path",
+          "statistical_unit",
+          "stop_condition"
+        ],
+        "evidence_id_coverage_percent": 100.0,
+        "rejected_alternative_mentions": [],
+        "word_count": 66
+      },
+      {
+        "round": 8,
+        "active_fact_count": 11,
+        "retained_fact_ids": [
+          "baseline",
+          "dataset",
+          "dataset_snapshot",
+          "formal_seeds",
+          "gpu_budget",
+          "non_goal",
+          "primary_goal",
+          "primary_metric",
+          "protected_path",
+          "statistical_unit",
+          "stop_condition"
+        ],
+        "fact_recall_percent": 100.0,
+        "cited_fact_ids": [
+          "baseline",
+          "dataset",
+          "dataset_snapshot",
+          "formal_seeds",
+          "gpu_budget",
+          "non_goal",
+          "primary_goal",
+          "primary_metric",
+          "protected_path",
+          "statistical_unit",
+          "stop_condition"
+        ],
+        "evidence_id_coverage_percent": 100.0,
+        "rejected_alternative_mentions": [],
+        "word_count": 66
+      },
+      {
+        "round": 9,
+        "active_fact_count": 11,
+        "retained_fact_ids": [
+          "baseline",
+          "dataset",
+          "dataset_snapshot",
+          "formal_seeds",
+          "gpu_budget",
+          "non_goal",
+          "primary_goal",
+          "primary_metric",
+          "protected_path",
+          "statistical_unit",
+          "stop_condition"
+        ],
+        "fact_recall_percent": 100.0,
+        "cited_fact_ids": [
+          "baseline",
+          "dataset",
+          "dataset_snapshot",
+          "formal_seeds",
+          "gpu_budget",
+          "non_goal",
+          "primary_goal",
+          "primary_metric",
+          "protected_path",
+          "statistical_unit",
+          "stop_condition"
+        ],
+        "evidence_id_coverage_percent": 100.0,
+        "rejected_alternative_mentions": [],
+        "word_count": 66
+      },
+      {
+        "round": 10,
+        "active_fact_count": 11,
+        "retained_fact_ids": [
+          "baseline",
+          "dataset",
+          "dataset_snapshot",
+          "formal_seeds",
+          "gpu_budget",
+          "non_goal",
+          "primary_goal",
+          "primary_metric",
+          "protected_path",
+          "statistical_unit",
+          "stop_condition"
+        ],
+        "fact_recall_percent": 100.0,
+        "cited_fact_ids": [
+          "baseline",
+          "dataset",
+          "dataset_snapshot",
+          "formal_seeds",
+          "gpu_budget",
+          "non_goal",
+          "primary_goal",
+          "primary_metric",
+          "protected_path",
+          "statistical_unit",
+          "stop_condition"
+        ],
+        "evidence_id_coverage_percent": 100.0,
+        "rejected_alternative_mentions": [],
+        "word_count": 66
+      }
+    ]
+  }
+}

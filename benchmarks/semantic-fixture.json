@@ -1,0 +1,154 @@
+{
+  "schema_version": "1.0",
+  "project_id": "SYNTHETIC-SEMANTIC-DRIFT",
+  "summary_word_limit": 110,
+  "rounds": [
+    {
+      "round": 1,
+      "artifact_id": "ART-CHARTER",
+      "raw_text": "The signed project charter states that the formal goal is enzyme activity prediction. Protein structure generation is explicitly a non-goal. An early brainstorming paragraph discussed molecule generation, docking, and structure prediction, but none of those ideas were approved. The charter is the governing source for scope.",
+      "structured_facts": ["primary_goal", "non_goal"]
+    },
+    {
+      "round": 2,
+      "artifact_id": "ART-DATA",
+      "raw_text": "The human-approved data decision selects EnzymeBench v3 with snapshot identifier EBV3-7A91. EnzymeBench v2 and a temporary CSV export remain in old notes for reproducibility but are deprecated and must not be used for formal runs. The train/validation split must remain family-disjoint.",
+      "structured_facts": ["dataset", "dataset_snapshot"]
+    },
+    {
+      "round": 3,
+      "artifact_id": "ART-METRIC",
+      "raw_text": "The frozen evaluation decision defines macro AUROC as the primary metric and protein family as the statistical unit. Micro F1, accuracy, per-protein averaging, and a 0.75 threshold appear in exploratory reports only; they are not the primary decision rule. Formal success is evaluated at the family level.",
+      "structured_facts": ["primary_metric", "statistical_unit"]
+    },
+    {
+      "round": 4,
+      "artifact_id": "ART-SEEDS",
+      "raw_text": "The approved formal seed set is 7, 21, 42. Seed 13 was used in an abandoned pilot and is not formal. Failed formal seeds must remain in the report instead of being silently dropped. This decision supersedes scripts that still default to seed 42 only.",
+      "structured_facts": ["formal_seeds"]
+    },
+    {
+      "round": 5,
+      "artifact_id": "ART-BASELINE",
+      "raw_text": "The frozen baseline is ESM2-linear at commit c0ffee. A larger ESM2-MLP experiment and a random-forest notebook produced interesting exploratory numbers but were never approved as the baseline. Comparisons must bind the baseline to its commit and configuration.",
+      "structured_facts": ["baseline"]
+    },
+    {
+      "round": 6,
+      "artifact_id": "ART-GOVERNANCE",
+      "raw_text": "The approved compute budget is 24 GPU-hours on 2xA100. The protected source path is data/raw. Stop immediately when the budget is exhausted or when more than 2 NaN failures occur. A scratch note proposed 80 GPU-hours on 8xH100 and deleting failed runs, but that proposal was rejected.",
+      "structured_facts": ["gpu_budget", "protected_path", "stop_condition"]
+    },
+    {
+      "round": 7,
+      "artifact_id": "ART-REJECTED-METRIC",
+      "raw_text": "A later brainstorming memo proposed replacing macro AUROC with accuracy and returning to EnzymeBench v2. The proposal has no human approval, conflicts with the frozen metric and dataset decisions, and must not change the project baseline. It is retained only as rejected historical context.",
+      "structured_facts": []
+    },
+    {
+      "round": 8,
+      "artifact_id": "ART-REJECTED-SEEDS",
+      "raw_text": "An abandoned automation draft suggested running only seed 13 and promoting ESM2-MLP as the baseline. Reviewers rejected both changes. The formal seeds and ESM2-linear baseline remain unchanged; this draft must not be treated as current knowledge.",
+      "structured_facts": []
+    },
+    {
+      "round": 9,
+      "artifact_id": "ART-REJECTED-COMPUTE",
+      "raw_text": "A capacity-planning email mentioned 80 GPU-hours on 8xH100 and removing failed runs to simplify reporting. The project owner explicitly rejected this plan. The approved GPU budget, failure-retention rule, protected path, and stop condition remain in force.",
+      "structured_facts": []
+    },
+    {
+      "round": 10,
+      "artifact_id": "ART-REJECTED-SCOPE",
+      "raw_text": "A final speculative note asked whether protein structure generation and docking should become project goals. No scope change was approved. Enzyme activity prediction remains the formal goal and protein structure generation remains an explicit non-goal.",
+      "structured_facts": []
+    }
+  ],
+  "gold_facts": {
+    "primary_goal": {
+      "value": "enzyme activity prediction",
+      "accepted_patterns": ["enzyme activity prediction"],
+      "evidence_id": "ART-CHARTER",
+      "round_introduced": 1
+    },
+    "non_goal": {
+      "value": "protein structure generation",
+      "accepted_patterns": ["protein structure generation"],
+      "evidence_id": "ART-CHARTER",
+      "round_introduced": 1
+    },
+    "dataset": {
+      "value": "EnzymeBench v3",
+      "accepted_patterns": ["EnzymeBench v3"],
+      "evidence_id": "ART-DATA",
+      "round_introduced": 2
+    },
+    "dataset_snapshot": {
+      "value": "EBV3-7A91",
+      "accepted_patterns": ["EBV3-7A91"],
+      "evidence_id": "ART-DATA",
+      "round_introduced": 2
+    },
+    "primary_metric": {
+      "value": "macro AUROC",
+      "accepted_patterns": ["macro AUROC"],
+      "evidence_id": "ART-METRIC",
+      "round_introduced": 3
+    },
+    "statistical_unit": {
+      "value": "protein family",
+      "accepted_patterns": ["protein family"],
+      "evidence_id": "ART-METRIC",
+      "round_introduced": 3
+    },
+    "formal_seeds": {
+      "value": "7, 21, 42",
+      "accepted_patterns": ["7, 21, 42"],
+      "evidence_id": "ART-SEEDS",
+      "round_introduced": 4
+    },
+    "baseline": {
+      "value": "ESM2-linear at commit c0ffee",
+      "accepted_patterns": [
+        "ESM2-linear at commit c0ffee",
+        "ESM2-linear at c0ffee",
+        "ESM2-linear commit c0ffee"
+      ],
+      "evidence_id": "ART-BASELINE",
+      "round_introduced": 5
+    },
+    "gpu_budget": {
+      "value": "24 GPU-hours on 2xA100",
+      "accepted_patterns": ["24 GPU-hours on 2xA100"],
+      "evidence_id": "ART-GOVERNANCE",
+      "round_introduced": 6
+    },
+    "protected_path": {
+      "value": "data/raw",
+      "accepted_patterns": ["data/raw"],
+      "evidence_id": "ART-GOVERNANCE",
+      "round_introduced": 6
+    },
+    "stop_condition": {
+      "value": "budget exhausted or more than 2 NaN failures",
+      "accepted_patterns": [
+        "budget exhausted or more than 2 NaN failures",
+        "budget exhaustion or >2 NaN failures",
+        "exhaustion or >2 NaN failures",
+        "exhausted or when more than 2 NaN failures",
+        "budget is exhausted or after more than 2 NaN failures",
+        "exhausted or after more than 2 NaN failures"
+      ],
+      "evidence_id": "ART-GOVERNANCE",
+      "round_introduced": 6
+    }
+  },
+  "rejected_lures": [
+    "EnzymeBench v2",
+    "micro F1",
+    "seed 13",
+    "ESM2-MLP",
+    "80 GPU-hours",
+    "8xH100"
+  ]
+}
