@@ -90,12 +90,24 @@ def _tested_code_paths() -> list[Path]:
     ]
 
 
+def _portable_source_sha256(path: Path) -> str:
+    """Hash UTF-8 source with canonical LF newlines across Git checkouts."""
+    payload = path.read_bytes()
+    try:
+        text = payload.decode("utf-8")
+    except UnicodeDecodeError:
+        canonical = payload
+    else:
+        canonical = text.replace("\r\n", "\n").replace("\r", "\n").encode("utf-8")
+    return hashlib.sha256(canonical).hexdigest()
+
+
 def _runner_source_digest() -> str:
     paths = _tested_code_paths()
     return _canonical_digest([
         {
             "path": path.relative_to(ROOT).as_posix(),
-            "sha256": hashlib.sha256(path.read_bytes()).hexdigest(),
+            "sha256": _portable_source_sha256(path),
         }
         for path in paths
     ])
@@ -635,7 +647,7 @@ def build_result(
             "tested_code_digest": _runner_source_digest(),
             "tested_code_digest_algorithm": (
                 "SHA-256 of canonical UTF-8 JSON containing sorted repository-relative "
-                "paths and each file's raw-byte SHA-256."
+                "paths and each file's SHA-256 after UTF-8 newline normalization to LF."
             ),
             "tested_code_paths": [
                 path.relative_to(ROOT).as_posix() for path in _tested_code_paths()

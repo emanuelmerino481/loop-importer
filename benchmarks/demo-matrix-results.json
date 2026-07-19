@@ -8,8 +8,8 @@
     "platform": "Windows-10-10.0.26100-SP0",
     "loop_importer_git_commit": "053ad4bd626b440dd7b7c6eb21eee96892d5b6c7",
     "loop_importer_worktree_dirty": true,
-    "tested_code_digest": "aafe9bcefa811db9325db983d68246ac073f3192a6e3e1a41cbe8b73854b52fa",
-    "tested_code_digest_algorithm": "SHA-256 of canonical UTF-8 JSON containing sorted repository-relative paths and each file's raw-byte SHA-256.",
+    "tested_code_digest": "47c332ee27c1dde22441f1a34417ad9bab025f7b5b0dfae0424d656e1fd05c6d",
+    "tested_code_digest_algorithm": "SHA-256 of canonical UTF-8 JSON containing sorted repository-relative paths and each file's SHA-256 after UTF-8 newline normalization to LF.",
     "tested_code_paths": [
       "src/loop_importer/__init__.py",
       "src/loop_importer/cli.py",
@@ -465,5 +465,5 @@
     }
   ],
   "result_digest_algorithm": "SHA-256 of canonical UTF-8 JSON with sorted keys and compact separators, computed before the result_digest field is added.",
-  "result_digest": "d6c4a0ad63d5d640718ac5b47293c4dcba96f9759914711a96880443557b18f3"
+  "result_digest": "b3ea340a531a347711cea39cfc02e088d56bede0027423d3f7d5273dd3a111c9"
 }
